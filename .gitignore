@@ -89,8 +89,6 @@ temp/
 .aider*
 .continue/
 .copilot/
-.agent/
-.agents/
 
 # Agent-generated temporary/planning files
 .agent-cache/
