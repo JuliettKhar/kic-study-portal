@@ -93,3 +93,17 @@ temp/
 # Agent-generated temporary/planning files
 .agent-cache/
 .agent-tmp/
+
+# Generated
+.nuxt
+.output
+node_modules
+dist
+coverage
+
+# Documentation
+*.md
+**/*.md
+
+# GitHub configuration
+.github/
