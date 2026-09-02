@@ -239,21 +239,27 @@ summary for independent review.
 Include:
 
 ### Changed
+
 What behavior was implemented.
 
 ### Key decisions
+
 Only decisions that materially affect the implementation.
 
 ### Files
+
 Important files changed.
 
 ### Verification
+
 Commands/tests actually executed and their results.
 
 ### Known limitations
+
 Anything intentionally left unresolved or outside the task scope.
 
 ### Review focus
+
 Any area where the reviewer should pay particular attention.
 
 Do not describe expected behavior as verified behavior.

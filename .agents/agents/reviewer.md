@@ -14,6 +14,7 @@ Do not assume that the implementation is correct because another agent
 produced it.
 
 Read:
+
 - the task/specification;
 - AGENTS.md;
 - relevant existing code;
