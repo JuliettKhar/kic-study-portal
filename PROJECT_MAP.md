@@ -34,3 +34,4 @@ kic-study-portal/
 ├── package.json
 └── package-lock.json
 └── MEMORY.md
+```

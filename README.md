@@ -50,6 +50,7 @@ Follow the official Git installation instructions for your operating system:
 After installation, run the version commands above again.
 
 ---
+
 ### Figma MCP
 
 Figma is the source of truth for the project's UI designs.
@@ -65,7 +66,6 @@ Setup instructions depend on the agent you use:
 
 Use the **remote Figma MCP server** unless you specifically need the
 desktop server.
-
 
 ---
 
@@ -220,13 +220,13 @@ Keep commits focused on the task.
 
 Common commit prefixes:
 
-| Prefix | Use for |
-| --- | --- |
-| `feat:` | New functionality |
-| `fix:` | Bug fixes |
+| Prefix      | Use for                                        |
+| ----------- | ---------------------------------------------- |
+| `feat:`     | New functionality                              |
+| `fix:`      | Bug fixes                                      |
 | `refactor:` | Internal code changes without behavior changes |
-| `docs:` | Documentation |
-| `chore:` | Tooling and project maintenance |
+| `docs:`     | Documentation                                  |
+| `chore:`    | Tooling and project maintenance                |
 
 ### 8. Push your branch
 
@@ -285,17 +285,17 @@ Merge to main
 
 ## Available Commands
 
-| Command | Purpose |
-| --- | --- |
-| `npm run dev` | Start the local development server |
-| `npm run lint` | Run ESLint |
-| `npm run lint:fix` | Automatically fix supported lint issues |
-| `npm run format` | Format files with Prettier |
-| `npm run format:check` | Check formatting |
-| `npm run typecheck` | Run Nuxt / TypeScript type checking |
-| `npm run check` | Run lint, formatting, and type checks |
-| `npm run build` | Create a production build |
-| `npm run preview` | Preview the production build locally |
+| Command                | Purpose                                 |
+| ---------------------- | --------------------------------------- |
+| `npm run dev`          | Start the local development server      |
+| `npm run lint`         | Run ESLint                              |
+| `npm run lint:fix`     | Automatically fix supported lint issues |
+| `npm run format`       | Format files with Prettier              |
+| `npm run format:check` | Check formatting                        |
+| `npm run typecheck`    | Run Nuxt / TypeScript type checking     |
+| `npm run check`        | Run lint, formatting, and type checks   |
+| `npm run build`        | Create a production build               |
+| `npm run preview`      | Preview the production build locally    |
 
 ---
 
