@@ -33,3 +33,4 @@ kic-study-portal/
 ├── eslint.config.mjs
 ├── package.json
 └── package-lock.json
+└── MEMORY.md

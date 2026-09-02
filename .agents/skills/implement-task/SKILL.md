@@ -97,6 +97,29 @@ Examples include:
 - introducing a new external service;
 - making a significant database model change.
 
+### Before implementation
+
+Before making changes:
+
+1. Inspect the relevant parts of the existing codebase first:
+   - related components/modules;
+   - existing patterns and abstractions;
+   - naming and file structure;
+   - tests for similar behavior.
+
+2. Understand the impact of the requested change:
+   - what existing behavior may be affected;
+   - which callers/components depend on the changed code;
+   - whether tests, types, documentation, or configuration need updates.
+
+3. Prefer the smallest change that solves the task correctly.
+
+4. Follow the existing project's coding style and patterns. Do not introduce new abstractions, helpers, dependencies, or architectural patterns unless they are necessary for the task.
+
+5. Do not generate boilerplate or speculative code "just in case". Every change should have a clear reason tied to the task or an identified impact.
+
+6. If the existing implementation conflicts with the task or a larger refactor appears necessary, explain the issue before proceeding rather than silently redesigning the surrounding code.
+
 ## 5. Implement
 
 Make the smallest coherent change that satisfies the task.
@@ -249,3 +272,9 @@ A task is complete only when:
 - the change is ready for independent review.
 
 After implementation, hand the change to the reviewer workflow.
+
+Update `MEMORY.md` only if the task reveals or changes cross-task context
+that is likely to affect future implementation.
+
+Do not record routine implementation details, completed work that is obvious
+from the codebase, or information already documented elsewhere.

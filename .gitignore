@@ -101,9 +101,5 @@ node_modules
 dist
 coverage
 
-# Documentation
-*.md
-**/*.md
-
 # GitHub configuration
 .github/
