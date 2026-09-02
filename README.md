@@ -50,6 +50,24 @@ Follow the official Git installation instructions for your operating system:
 After installation, run the version commands above again.
 
 ---
+### Figma MCP
+
+Figma is the source of truth for the project's UI designs.
+
+Before working on Figma-based UI tasks, connect the official Figma MCP
+server to your coding agent.
+
+Setup instructions depend on the agent you use:
+
+- [Claude Code + Figma MCP](https://help.figma.com/hc/en-us/articles/39888612464151-Claude-Code-and-Figma-Set-up-the-MCP-server)
+- [Codex + Figma MCP](https://help.figma.com/hc/en-us/articles/39888629089175-Codex-and-Figma-Set-up-the-MCP-server)
+- [Figma MCP setup for other clients](https://help.figma.com/hc/en-us/articles/39216419318551-Get-started-with-the-Figma-MCP-server)
+
+Use the **remote Figma MCP server** unless you specifically need the
+desktop server.
+
+
+---
 
 ## Setup
 
