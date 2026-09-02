@@ -1,9 +1,5 @@
 name: CI
 
-jobs:
-  quality:
-    name: Quality checks
-
 on:
   pull_request:
     branches:
