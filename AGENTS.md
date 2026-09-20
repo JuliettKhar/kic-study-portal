@@ -228,3 +228,10 @@ A change is merge-ready when:
 - independent review has been completed for non-trivial changes;
 - CI passes;
 - documentation is updated when required.
+
+## UI implementation
+
+Before implementing or modifying UI:
+
+- Read `docs/design/design.md` for the visual design specification.
+- Read `docs/architecture/adr/0001-frontend-styling.md` for styling architecture.

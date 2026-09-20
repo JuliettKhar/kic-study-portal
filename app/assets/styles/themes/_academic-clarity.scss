@@ -1,0 +1,64 @@
+@use '../tokens' as tokens;
+
+:root {
+  // Surfaces
+  --color-background: #{tokens.$surface};
+  --color-surface: #{tokens.$surface};
+  --color-surface-dim: #{tokens.$surface-dim};
+  --color-surface-bright: #{tokens.$surface-bright};
+  --color-surface-lowest: #{tokens.$surface-container-lowest};
+  --color-surface-low: #{tokens.$surface-container-low};
+  --color-surface-container: #{tokens.$surface-container};
+  --color-surface-high: #{tokens.$surface-container-high};
+  --color-surface-highest: #{tokens.$surface-container-highest};
+
+  // Content
+  --color-on-surface: #{tokens.$on-surface};
+  --color-on-surface-variant: #{tokens.$on-surface-variant};
+  --color-outline: #{tokens.$outline};
+  --color-outline-variant: #{tokens.$outline-variant};
+
+  // Brand
+  --color-primary: #{tokens.$primary};
+  --color-on-primary: #{tokens.$on-primary};
+
+  --color-secondary: #{tokens.$secondary};
+  --color-on-secondary: #{tokens.$on-secondary};
+
+  // Semantic
+  --color-success: #{tokens.$success};
+  --color-warning: #{tokens.$warning};
+  --color-error: #{tokens.$error};
+  --color-info: #{tokens.$info};
+
+  // Typography
+  --font-ui: #{tokens.$font-ui};
+  --font-content: #{tokens.$font-content};
+
+  --font-size-display-lg: #{tokens.$font-size-display-lg};
+  --font-size-headline-md: #{tokens.$font-size-headline-md};
+  --font-size-headline-sm: #{tokens.$font-size-headline-sm};
+  --font-size-body-lg: #{tokens.$font-size-body-lg};
+  --font-size-body-md: #{tokens.$font-size-body-md};
+  --font-size-body-sm: #{tokens.$font-size-body-sm};
+  --font-size-label-caps: #{tokens.$font-size-label-caps};
+  --font-size-badge: #{tokens.$font-size-badge};
+
+  // Spacing
+  --space-xs: #{tokens.$space-xs};
+  --space-sm: #{tokens.$space-sm};
+  --space-md: #{tokens.$space-md};
+  --space-lg: #{tokens.$space-lg};
+  --space-xl: #{tokens.$space-xl};
+
+  // Radius
+  --radius-sm: #{tokens.$radius-sm};
+  --radius-md: #{tokens.$radius-md};
+  --radius-lg: #{tokens.$radius-lg};
+  --radius-xl: #{tokens.$radius-xl};
+  --radius-full: #{tokens.$radius-full};
+
+  // Layout
+  --container-max: #{tokens.$container-max};
+  --gutter: #{tokens.$gutter};
+}
