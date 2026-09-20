@@ -228,6 +228,7 @@ A change is merge-ready when:
 - independent review has been completed for non-trivial changes;
 - CI passes;
 - documentation is updated when required.
+
 ## UI implementation
 
 Before implementing or modifying UI:

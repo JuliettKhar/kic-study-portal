@@ -3,3 +3,7 @@
 node_modules
 dist
 coverage
+
+# Markdown is written by hand and by agents; formatting it creates noisy diffs
+*.md
+**/*.md
