@@ -1,0 +1,68 @@
+// Colors — surfaces
+$surface: #faf8ff;
+$surface-dim: #d9d9e5;
+$surface-bright: #faf8ff;
+$surface-container-lowest: #ffffff;
+$surface-container-low: #f3f3fe;
+$surface-container: #ededf9;
+$surface-container-high: #e7e7f3;
+$surface-container-highest: #e1e2ed;
+
+$on-surface: #191b23;
+$on-surface-variant: #434655;
+$inverse-surface: #2e3039;
+$inverse-on-surface: #f0f0fb;
+
+$outline: #737686;
+$outline-variant: #c3c6d7;
+
+// Brand
+$primary: #2563eb;
+$on-primary: #ffffff;
+
+$secondary: #505f76;
+$on-secondary: #ffffff;
+$secondary-container: #d0e1fb;
+$on-secondary-container: #54647a;
+
+$tertiary: #943700;
+$on-tertiary: #ffffff;
+$tertiary-container: #bc4800;
+$on-tertiary-container: #ffede6;
+
+// Semantic
+$success: #10b981;
+$warning: #f59e0b;
+$error: #ef4444;
+$info: #0ea5e9;
+
+// Typography
+$font-ui: 'Inter', sans-serif;
+$font-content: 'Noto Sans JP', sans-serif;
+
+$font-size-display-lg: 3rem;
+$font-size-headline-md: 1.5rem;
+$font-size-headline-sm: 1.25rem;
+$font-size-body-lg: 1.125rem;
+$font-size-body-md: 1rem;
+$font-size-body-sm: 0.875rem;
+$font-size-label-caps: 0.75rem;
+$font-size-badge: 0.6875rem;
+
+// Spacing
+$space-xs: 0.25rem;
+$space-sm: 0.5rem;
+$space-md: 1rem;
+$space-lg: 1.5rem;
+$space-xl: 3rem;
+
+// Radius
+$radius-sm: 0.125rem;
+$radius-md: 0.25rem;
+$radius-lg: 0.5rem;
+$radius-xl: 0.75rem;
+$radius-full: 9999px;
+
+// Layout
+$container-max: 80rem;
+$gutter: 1.25rem;
