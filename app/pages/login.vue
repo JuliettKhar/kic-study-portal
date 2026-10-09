@@ -113,7 +113,7 @@ const CAPABILITIES = [
     flex-direction: column;
     gap: var(--space-lg);
     width: 100%;
-    max-width: 28rem;
+    max-width: var(--auth-card-max);
     padding: var(--space-xl) var(--space-lg);
     border-radius: var(--radius-lg);
     background: var(--color-surface-lowest);
@@ -246,7 +246,6 @@ const CAPABILITIES = [
     border-radius: var(--radius-full);
     background: var(--color-surface-lowest);
     box-shadow: var(--shadow-chip);
-    backdrop-filter: blur(var(--blur-sm));
     font-family: var(--font-ui);
     font-size: var(--font-size-body-sm);
     font-weight: 500;

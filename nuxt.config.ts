@@ -10,6 +10,9 @@ export default defineNuxtConfig({
       {
         mode: 'svg',
         serverBundle: 'local',
+        // Ship used icons with the client and never call the public Iconify API (see ADR-0002).
+        clientBundle: { scan: true },
+        fallbackToApi: false,
       },
     ],
   ],
