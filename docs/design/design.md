@@ -152,7 +152,7 @@ The palette is anchored by the #2563eb Blue accent, representing academic author
 
 ## Typography
 
-This design system utilizes a dual-font stack. **Inter** is used for the UI "chrome," navigation, and data labels to ensure technical precision. **Noto Sans JP** is used for all body text and resource content, ensuring maximum readability for long-form academic text in both English and Japanese.
+This design system utilizes a dual-font stack. **Inter** is used for the UI "chrome," navigation, and data labels to ensure technical precision. **Noto Sans JP** is used for all body text and resource content, ensuring maximum readability for long-form academic text in both English and Japanese. Inter has no Japanese glyphs, so the UI stack falls back to Noto Sans JP (`'Inter', 'Noto Sans JP', sans-serif`) for Japanese text in UI elements.
 
 For V2's "Course Details" and "Resources" pages:
 
