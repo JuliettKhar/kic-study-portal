@@ -1,5 +1,6 @@
 <script setup lang="ts">
-const currentYear = new Date().getFullYear()
+// Computed once on the server and reused on hydration, so server/client time zones never disagree.
+const currentYear = useState('auth-footer-year', () => new Date().getFullYear())
 </script>
 
 <template>
@@ -21,6 +22,9 @@ const currentYear = new Date().getFullYear()
 @use '~/assets/styles/tokens/breakpoints' as bp;
 
 .auth-layout {
+  // Shared by the page card and the background gutters beside it.
+  --auth-card-max: 28rem;
+
   position: relative;
   isolation: isolate;
   display: flex;

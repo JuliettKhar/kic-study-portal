@@ -27,7 +27,7 @@ interface FloatingItem {
   y: string
 }
 
-// x comes from the 1280x1066 Figma frame (node 204:71) with a 28rem card in the middle.
+// x comes from the 1280x1066 Figma frame (node 204:71) with the login card in the middle.
 // y keeps every item beside the card, above the wider capability chips and footer.
 // The right column mirrors the left one.
 const FLOATING_ITEMS: FloatingItem[] = [
@@ -58,8 +58,8 @@ const FLOATING_ITEMS: FloatingItem[] = [
   pointer-events: none;
   user-select: none;
 
-  // Free space on each side of the login card (28rem, see pages/login.vue).
-  --gutter-width: calc((100% - 28rem) / 2);
+  // Free space on each side of the login card (--auth-card-max from layouts/auth.vue).
+  --gutter-width: calc((100% - var(--auth-card-max)) / 2);
   --item-half: 3rem;
 
   &__item {

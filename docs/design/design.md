@@ -175,7 +175,7 @@ Elevation is communicated through **Tonal Layers** and **Glassmorphism** rather 
 - **Level 0 (Background):** #f8fafc.
 - **Level 1 (Cards/Content):** Pure white (#ffffff) with a 1px border (#e2e8f0).
 - **Raised card (`--shadow-card`):** Pure white, no border, two-layer shadow in #e2e8f0 at 60%: `0 20px 25px -5px` + `0 8px 10px -6px`. Used for the login card.
-- **Chip (`--shadow-chip`, `--blur-sm`):** 1px #e2e8f0 border, `0 1px 2px` black at 5% shadow, 4px background blur.
+- **Chip (`--shadow-chip`):** 1px #e2e8f0 border, `0 1px 2px` black at 5% shadow.
 - **Level 2 (Modals/Overlays):** White with 90% opacity, a 16px backdrop-blur, and a soft 10% opacity primary color tint in the shadow.
 - **Depth Shading:** Use subtle inner glows on input fields to indicate focus, rather than heavy outer shadows.
 
