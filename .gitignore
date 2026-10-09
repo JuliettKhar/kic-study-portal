@@ -71,6 +71,7 @@ Desktop.ini
 coverage/
 .nyc_output/
 playwright-report/
+.playwright-mcp/
 test-results/
 
 # Temporary files

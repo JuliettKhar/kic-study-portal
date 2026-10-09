@@ -7,6 +7,7 @@
   --color-surface-dim: #{tokens.$surface-dim};
   --color-surface-bright: #{tokens.$surface-bright};
   --color-surface-lowest: #{tokens.$surface-container-lowest};
+  --color-surface-subtle: #{tokens.$surface-subtle};
   --color-surface-low: #{tokens.$surface-container-low};
   --color-surface-container: #{tokens.$surface-container};
   --color-surface-high: #{tokens.$surface-container-high};
@@ -14,9 +15,13 @@
 
   // Content
   --color-on-surface: #{tokens.$on-surface};
+  --color-on-surface-strong: #{tokens.$on-surface-strong};
   --color-on-surface-variant: #{tokens.$on-surface-variant};
+  --color-on-surface-muted: #{tokens.$on-surface-muted};
+  --color-on-surface-faint: #{tokens.$on-surface-faint};
   --color-outline: #{tokens.$outline};
   --color-outline-variant: #{tokens.$outline-variant};
+  --color-outline-subtle: #{tokens.$outline-subtle};
 
   // Brand
   --color-primary: #{tokens.$primary};
@@ -41,6 +46,8 @@
   --font-size-body-lg: #{tokens.$font-size-body-lg};
   --font-size-body-md: #{tokens.$font-size-body-md};
   --font-size-body-sm: #{tokens.$font-size-body-sm};
+  --font-size-body-sm-plus: #{tokens.$font-size-body-sm-plus};
+  --font-size-body-xs: #{tokens.$font-size-body-xs};
   --font-size-label-caps: #{tokens.$font-size-label-caps};
   --font-size-badge: #{tokens.$font-size-badge};
 
@@ -49,7 +56,15 @@
   --space-sm: #{tokens.$space-sm};
   --space-md: #{tokens.$space-md};
   --space-lg: #{tokens.$space-lg};
+  --space-lg-plus: #{tokens.$space-lg-plus};
   --space-xl: #{tokens.$space-xl};
+
+  // Shadows
+  --shadow-card: #{tokens.$shadow-card};
+  --shadow-chip: #{tokens.$shadow-chip};
+
+  // Effects
+  --blur-sm: #{tokens.$blur-sm};
 
   // Radius
   --radius-sm: #{tokens.$radius-sm};

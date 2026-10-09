@@ -3,18 +3,23 @@ $surface: #faf8ff;
 $surface-dim: #d9d9e5;
 $surface-bright: #faf8ff;
 $surface-container-lowest: #ffffff;
+$surface-subtle: #f8fafc;
 $surface-container-low: #f3f3fe;
 $surface-container: #ededf9;
 $surface-container-high: #e7e7f3;
 $surface-container-highest: #e1e2ed;
 
 $on-surface: #191b23;
+$on-surface-strong: #334155;
 $on-surface-variant: #434655;
+$on-surface-muted: #64748b;
+$on-surface-faint: #94a3b8;
 $inverse-surface: #2e3039;
 $inverse-on-surface: #f0f0fb;
 
 $outline: #737686;
 $outline-variant: #c3c6d7;
+$outline-subtle: #e2e8f0;
 
 // Brand
 $primary: #2563eb;
@@ -37,7 +42,8 @@ $error: #ef4444;
 $info: #0ea5e9;
 
 // Typography
-$font-ui: 'Inter', sans-serif;
+// Inter has no Japanese glyphs; fall back to Noto Sans JP instead of the system font.
+$font-ui: 'Inter', 'Noto Sans JP', sans-serif;
 $font-content: 'Noto Sans JP', sans-serif;
 
 $font-size-display-lg: 3rem;
@@ -46,6 +52,8 @@ $font-size-headline-sm: 1.25rem;
 $font-size-body-lg: 1.125rem;
 $font-size-body-md: 1rem;
 $font-size-body-sm: 0.875rem;
+$font-size-body-sm-plus: 0.9375rem;
+$font-size-body-xs: 0.75rem;
 $font-size-label-caps: 0.75rem;
 $font-size-badge: 0.6875rem;
 
@@ -54,7 +62,17 @@ $space-xs: 0.25rem;
 $space-sm: 0.5rem;
 $space-md: 1rem;
 $space-lg: 1.5rem;
+$space-lg-plus: 2rem;
 $space-xl: 3rem;
+
+// Shadows
+$shadow-card:
+  0 1.25rem 1.5625rem -0.3125rem rgba($outline-subtle, 0.6),
+  0 0.5rem 0.625rem -0.375rem rgba($outline-subtle, 0.6);
+$shadow-chip: 0 0.0625rem 0.125rem rgba(#000, 0.05);
+
+// Effects
+$blur-sm: 0.25rem;
 
 // Radius
 $radius-sm: 0.125rem;
