@@ -32,7 +32,7 @@ Configuration in `nuxt.config.ts`:
 - `mode: 'svg'` renders inline `<svg>`, so icons inherit `color` via `currentColor` and are sized with `font-size`.
 - `serverBundle: 'local'` serves icons from the locally installed collection.
 - `clientBundle: { scan: true }` scans the source for icon names and ships the icons used by the app with the client bundle, so client-side navigation renders them without a request.
-- `fallbackToApi: false` ensures the app never calls the public Iconify API (`api.iconify.design`) at runtime.
+- `fallbackToApi: false` keeps the app from calling the public Iconify API (`api.iconify.design`) at runtime in the server build (see Consequences for static/SPA builds).
 
 Usage:
 
@@ -53,5 +53,6 @@ Usage:
 - One consistent icon style across the app, with icons recoloured by tokens.
 - Only the icons in use reach the browser (8 icons, about 2.5 KB uncompressed at the time of writing).
 - The server bundle contains the full Lucide collection (about 600 KB); this affects server bundle size only, not what the browser downloads.
-- `clientBundle.scan` is marked experimental in `@nuxt/icon` 2.x. If it misses an icon, list it explicitly in `clientBundle.icons`.
+- `clientBundle.scan` is marked experimental in `@nuxt/icon` 2.x. In the current server build (`nuxt build`, where `@nuxt/icon` infers `provider: 'server'`), an icon it misses (for example a name built at runtime) is fetched from the app's own `/api/_nuxt_icon` endpoint, not the public API. A misspelled name renders an empty icon; only an `[Icon] failed to load icon` warning is logged during SSR. To avoid the extra request, list such icons explicitly in `clientBundle.icons`.
+- `nuxt generate` or `ssr: false` makes `@nuxt/icon` switch to the `iconify` provider, which fetches missed icons from the public Iconify API regardless of `fallbackToApi`. Revisit this configuration before moving to a static or SPA deployment.
 - Lucide icons are outline-only. A filled icon requires another collection and a new decision.
