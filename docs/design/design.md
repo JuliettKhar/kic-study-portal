@@ -5,16 +5,21 @@ colors:
   surface-dim: '#d9d9e5'
   surface-bright: '#faf8ff'
   surface-container-lowest: '#ffffff'
+  surface-subtle: '#f8fafc'
   surface-container-low: '#f3f3fe'
   surface-container: '#ededf9'
   surface-container-high: '#e7e7f3'
   surface-container-highest: '#e1e2ed'
   on-surface: '#191b23'
+  on-surface-strong: '#334155'
   on-surface-variant: '#434655'
+  on-surface-muted: '#64748b'
+  on-surface-faint: '#94a3b8'
   inverse-surface: '#2e3039'
   inverse-on-surface: '#f0f0fb'
   outline: '#737686'
   outline-variant: '#c3c6d7'
+  outline-subtle: '#e2e8f0'
   surface-tint: '#0053db'
   primary: '#004ac6'
   on-primary: '#ffffff'
@@ -81,6 +86,16 @@ typography:
     fontSize: 14px
     fontWeight: '400'
     lineHeight: 20px
+  body-sm-plus:
+    fontFamily: Noto Sans JP
+    fontSize: 15px
+    fontWeight: '400'
+    lineHeight: 24px
+  body-xs:
+    fontFamily: Noto Sans JP
+    fontSize: 12px
+    fontWeight: '400'
+    lineHeight: 18px
   data-tabular:
     fontFamily: Inter
     fontSize: 14px
@@ -110,6 +125,7 @@ spacing:
   sm: 8px
   md: 16px
   lg: 24px
+  lg-plus: 32px
   xl: 48px
   container-max: 1280px
   gutter: 20px
@@ -158,6 +174,8 @@ Elevation is communicated through **Tonal Layers** and **Glassmorphism** rather 
 
 - **Level 0 (Background):** #f8fafc.
 - **Level 1 (Cards/Content):** Pure white (#ffffff) with a 1px border (#e2e8f0).
+- **Raised card (`--shadow-card`):** Pure white, no border, two-layer shadow in #e2e8f0 at 60%: `0 20px 25px -5px` + `0 8px 10px -6px`. Used for the login card.
+- **Chip (`--shadow-chip`, `--blur-sm`):** 1px #e2e8f0 border, `0 1px 2px` black at 5% shadow, 4px background blur.
 - **Level 2 (Modals/Overlays):** White with 90% opacity, a 16px backdrop-blur, and a soft 10% opacity primary color tint in the shadow.
 - **Depth Shading:** Use subtle inner glows on input fields to indicate focus, rather than heavy outer shadows.
 
