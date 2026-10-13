@@ -12,8 +12,8 @@ const currentYear = useState('auth-footer-year', () => new Date().getFullYear())
     </main>
 
     <footer class="auth-layout__footer">
-      <p>Version 1.0 Prototype</p>
-      <p>&copy; {{ currentYear }} Graduate School of IT. All rights reserved.</p>
+      <span>Version 1.0 Prototype</span>
+      <span>&copy; {{ currentYear }} Graduate School of IT. All rights reserved.</span>
     </footer>
   </div>
 </template>
@@ -24,7 +24,6 @@ const currentYear = useState('auth-footer-year', () => new Date().getFullYear())
 .auth-layout {
   // Shared by the page card and the background gutters beside it.
   --auth-card-max: 28rem;
-
   position: relative;
   isolation: isolate;
   display: flex;
@@ -33,7 +32,7 @@ const currentYear = useState('auth-footer-year', () => new Date().getFullYear())
   align-items: center;
   min-height: 100dvh;
   padding: var(--space-xl) var(--space-md);
-  gap: var(--space-xl);
+  gap: var(--space-lg-plus);
 
   &::before {
     content: '';
