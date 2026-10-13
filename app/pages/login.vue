@@ -137,6 +137,7 @@ const CAPABILITIES = [
   }
 
   &__button {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -152,9 +153,30 @@ const CAPABILITIES = [
     font-weight: 600;
     text-decoration: none;
     cursor: pointer;
+    overflow: hidden;
+
+    // A single sheen crossing the button on hover, rather than a looping gradient
+    // that would read as a loading state.
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        110deg,
+        transparent 20%,
+        color-mix(in srgb, var(--color-on-primary) 16%, transparent) 50%,
+        transparent 80%
+      );
+      transform: translateX(-100%);
+      transition: transform 0.7s ease;
+    }
 
     &:hover {
       background: color-mix(in srgb, var(--color-primary) 88%, var(--color-on-surface));
+    }
+
+    &:hover::after {
+      transform: translateX(100%);
     }
 
     &:focus-visible {
@@ -274,6 +296,12 @@ const CAPABILITIES = [
     &__capabilities-title {
       font-size: var(--font-size-body-sm);
     }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .login__button::after {
+    transition: none;
   }
 }
 </style>
