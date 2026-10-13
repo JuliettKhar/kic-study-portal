@@ -71,7 +71,7 @@ const FLOATING_ITEMS: FloatingItem[] = [
     width: 6rem;
     opacity: 0.4;
     // Negative delays start each item mid-cycle so they never move in sync.
-    animation: float 4s ease-in-out var(--float-delay, 0s) infinite alternate;
+    animation: float 3s ease-in-out var(--float-delay, 0s) infinite alternate;
 
     // Keep the whole item inside its gutter so it never slides under the card.
     --offset: clamp(
