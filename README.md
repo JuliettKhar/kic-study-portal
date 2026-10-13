@@ -88,7 +88,35 @@ npm install
 
 Do not use Yarn, pnpm, or Bun for this repository.
 
-### 3. Start the development server
+### 3. Configure Google sign-in
+
+`/` redirects to `/login`, so the app needs your own OAuth client. Consent screen, scopes and
+enabled APIs are already configured in the shared `KIC Study Portal` Cloud project — you only
+add a client of your own. Credentials are never shared through the repo.
+
+1. Ask a maintainer for access to the project. They grant your `@kic.ac.jp` account the
+   **OAuth Config Editor** role in [Google Cloud Console](https://console.cloud.google.com)
+   under **IAM & Admin → IAM → Grant access**.
+2. Select `KIC Study Portal` in the project picker at the top of the console, then go to
+   **APIs & Services → OAuth consent screen → Clients → Create client**: type **Web application**,
+   name it after yourself, redirect URI `http://localhost:3000/auth/google`, origins left empty.
+   Copy the client ID and secret — the secret is shown once.
+
+   Leave Audience, Data Access and the enabled APIs alone: they are project-wide and already set.
+3. Fill in your `.env`. Every value here is personal, including the session password:
+
+```bash
+cp .env.example .env
+openssl rand -base64 32   # value for NUXT_SESSION_PASSWORD
+```
+
+Troubleshooting: a redirect to `/login?error=domain` means the account is outside the allowed
+domain — the dev server log prints the rejected and the expected one. An empty
+`NUXT_AUTH_ALLOWED_DOMAIN=` causes it too, as it overrides the default instead of falling back.
+
+Flow and scopes: `docs/architecture/adr/ADR-0003-authentication.md`.
+
+### 4. Start the development server
 
 ```bash
 npm run dev
