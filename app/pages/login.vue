@@ -31,8 +31,8 @@ const CAPABILITIES = [
         授業スケジュール、Google Meetのリンク、履修ルールなどの学習情報を一つの画面で確認できます。
       </p>
 
-      <!-- Sign-in behaviour is out of scope here; see #3. -->
-      <button type="button" class="login__button">
+      <!-- A full page load, not a router navigation: OAuth is a chain of cross-origin redirects. -->
+      <a class="login__button" href="/auth/google">
         <img
           class="login__google-mark"
           src="~/assets/images/google-icon.svg"
@@ -41,7 +41,7 @@ const CAPABILITIES = [
           height="28"
         />
         KIC Googleアカウントでログイン
-      </button>
+      </a>
 
       <div class="login__notice">
         <p class="login__notice-title">
@@ -52,7 +52,8 @@ const CAPABILITIES = [
         <p>パスワードは本システムに保存されません。</p>
       </div>
 
-      <NuxtLink to="/" class="login__help">ログインできない場合</NuxtLink>
+      <!-- Hidden until a help page exists: "/" is behind the auth middleware and bounces back here. -->
+      <!-- <NuxtLink to="/" class="login__help">ログインできない場合</NuxtLink> -->
     </section>
 
     <section class="login__capabilities" aria-labelledby="capabilities-heading">
@@ -136,6 +137,7 @@ const CAPABILITIES = [
   }
 
   &__button {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -149,10 +151,32 @@ const CAPABILITIES = [
     color: var(--color-on-primary);
     font-family: var(--font-ui);
     font-weight: 600;
+    text-decoration: none;
     cursor: pointer;
+    overflow: hidden;
+
+    // A single sheen crossing the button on hover, rather than a looping gradient
+    // that would read as a loading state.
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        110deg,
+        transparent 20%,
+        color-mix(in srgb, var(--color-on-primary) 16%, transparent) 50%,
+        transparent 80%
+      );
+      transform: translateX(-100%);
+      transition: transform 0.7s ease;
+    }
 
     &:hover {
       background: color-mix(in srgb, var(--color-primary) 88%, var(--color-on-surface));
+    }
+
+    &:hover::after {
+      transform: translateX(100%);
     }
 
     &:focus-visible {
@@ -195,24 +219,25 @@ const CAPABILITIES = [
     font-weight: 700;
   }
 
-  &__help {
-    align-self: center;
-    color: var(--color-primary);
-    font-size: var(--font-size-body-sm);
-    font-weight: 500;
-    line-height: 1.25rem;
-    text-decoration: none;
+  // TODO: temporary comment
+  // &__help {
+  //   align-self: center;
+  //   color: var(--color-primary);
+  //   font-size: var(--font-size-body-sm);
+  //   font-weight: 500;
+  //   line-height: 1.25rem;
+  //   text-decoration: none;
 
-    &:hover {
-      text-decoration: underline;
-    }
+  //   &:hover {
+  //     text-decoration: underline;
+  //   }
 
-    &:focus-visible {
-      outline: 2px solid var(--color-primary);
-      outline-offset: 2px;
-      border-radius: var(--radius-sm);
-    }
-  }
+  //   &:focus-visible {
+  //     outline: 2px solid var(--color-primary);
+  //     outline-offset: 2px;
+  //     border-radius: var(--radius-sm);
+  //   }
+  // }
 
   &__capabilities {
     display: flex;
@@ -271,6 +296,12 @@ const CAPABILITIES = [
     &__capabilities-title {
       font-size: var(--font-size-body-sm);
     }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .login__button::after {
+    transition: none;
   }
 }
 </style>

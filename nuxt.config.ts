@@ -5,6 +5,7 @@ export default defineNuxtConfig({
   modules: [
     '@nuxt/eslint',
     '@nuxt/fonts',
+    'nuxt-auth-utils',
     [
       '@nuxt/icon',
       {
@@ -17,6 +18,12 @@ export default defineNuxtConfig({
     ],
   ],
   css: ['~/assets/styles/main.scss'],
+  runtimeConfig: {
+    auth: {
+      // Google Workspace domain allowed to sign in, override with NUXT_AUTH_ALLOWED_DOMAIN.
+      allowedDomain: 'st.kic.ac.jp',
+    },
+  },
   fonts: {
     // Weights used by the typography scale in docs/design/design.md; the module loads only 400 by default.
     defaults: {

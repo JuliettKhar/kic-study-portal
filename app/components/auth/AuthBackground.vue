@@ -53,7 +53,9 @@ const FLOATING_ITEMS: FloatingItem[] = [
 .auth-background {
   position: absolute;
   inset: 0;
-  z-index: -1;
+  // Above the page content so the items can receive hover; they are clamped to the
+  // gutters beside the card, so nothing is ever painted over readable content.
+  z-index: 1;
   overflow: hidden;
   pointer-events: none;
   user-select: none;
@@ -71,7 +73,16 @@ const FLOATING_ITEMS: FloatingItem[] = [
     width: 6rem;
     opacity: 0.4;
     // Negative delays start each item mid-cycle so they never move in sync.
-    animation: float 4s ease-in-out var(--float-delay, 0s) infinite alternate;
+    animation: float 3s ease-in-out var(--float-delay, 0s) infinite alternate;
+    // Opted back in so the item can react to hover; the container stays click-through.
+    // The cursor stays default: these are decoration, not controls.
+    pointer-events: auto;
+    cursor: default;
+    transition: opacity 0.3s ease;
+
+    &:hover {
+      opacity: 0.65;
+    }
 
     // Keep the whole item inside its gutter so it never slides under the card.
     --offset: clamp(
