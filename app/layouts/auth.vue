@@ -59,10 +59,6 @@ const currentYear = useState('auth-footer-year', () => new Date().getFullYear())
     line-height: 1.25rem;
     text-align: center;
 
-    p {
-      margin: 0 0 var(--space-xs);
-    }
-
     @media (max-width: bp.$mobile) {
       font-size: var(--font-size-body-xs);
       line-height: 1.125rem;

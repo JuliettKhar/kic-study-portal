@@ -1,5 +1,9 @@
 <template>
-  <section class="ui-card" :aria-labelledby="title ? titleId : undefined">
+  <section
+    class="ui-card"
+    :class="`ui-card--${variant}`"
+    :aria-labelledby="title ? titleId : undefined"
+  >
     <header v-if="title || $slots.actions" class="ui-card__header">
       <h2 v-if="title" :id="titleId" class="ui-card__title">
         <Icon v-if="icon" :name="icon" class="ui-card__icon" aria-hidden="true" />
@@ -14,15 +18,20 @@
 </template>
 
 <script setup lang="ts">
+/** The two surface levels defined in docs/design/design.md: bordered content, or raised. */
+export type UiCardVariant = 'outlined' | 'raised'
+
 withDefaults(
   defineProps<{
     title?: string
     /** Lucide icon name, rendered before the title. */
     icon?: string
+    variant?: UiCardVariant
   }>(),
   {
     title: undefined,
     icon: undefined,
+    variant: 'outlined',
   },
 )
 
@@ -32,9 +41,17 @@ const titleId = useId()
 <style scoped lang="scss">
 .ui-card {
   padding: var(--space-lg);
-  border: 1px solid var(--color-outline-variant);
-  border-radius: var(--radius-xl);
   background: var(--color-surface-lowest);
+
+  &--outlined {
+    border: 1px solid var(--color-outline-variant);
+    border-radius: var(--radius-xl);
+  }
+
+  &--raised {
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+  }
 
   &__header {
     display: flex;
