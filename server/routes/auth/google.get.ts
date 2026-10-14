@@ -25,7 +25,9 @@ export default defineOAuthGoogleEventHandler({
     authorizationParams: {
       // Required for Google to return a refresh token alongside the access token.
       access_type: 'offline',
-      prompt: 'consent',
+      // `consent` for the refresh token; `select_account` so a student on a shared
+      // computer can pick a different account instead of being signed in silently.
+      prompt: 'consent select_account',
     },
   },
 
