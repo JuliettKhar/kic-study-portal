@@ -24,24 +24,27 @@ const CAPABILITIES = [
       <h1 class="login__brand-title">KIC Student Dashboard</h1>
     </header>
 
-    <!-- TODO: replace with UiCard / UiButton once #2 lands. -->
-    <section class="login__card" aria-labelledby="login-heading">
+    <!-- The heading is styled for this page, so it stays in the slot and names the card by id
+         rather than going through UiCard's `title` prop. -->
+    <UiCard variant="raised" class="login__card" aria-labelledby="login-heading">
       <h2 id="login-heading" class="login__heading">KIC学生ポータルへようこそ</h2>
       <p class="login__lead">
         授業スケジュール、Google Meetのリンク、履修ルールなどの学習情報を一つの画面で確認できます。
       </p>
 
       <!-- A full page load, not a router navigation: OAuth is a chain of cross-origin redirects. -->
-      <a class="login__button" href="/auth/google">
-        <img
-          class="login__google-mark"
-          src="~/assets/images/google-icon.svg"
-          alt=""
-          width="28"
-          height="28"
-        />
+      <UiButton size="lg" block href="/auth/google" class="login__button">
+        <template #icon>
+          <img
+            class="login__google-mark"
+            src="~/assets/images/google-icon.svg"
+            alt=""
+            width="28"
+            height="28"
+          />
+        </template>
         KIC Googleアカウントでログイン
-      </a>
+      </UiButton>
 
       <div class="login__notice">
         <p class="login__notice-title">
@@ -54,7 +57,7 @@ const CAPABILITIES = [
 
       <!-- Hidden until a help page exists: "/" is behind the auth middleware and bounces back here. -->
       <!-- <NuxtLink to="/" class="login__help">ログインできない場合</NuxtLink> -->
-    </section>
+    </UiCard>
 
     <section class="login__capabilities" aria-labelledby="capabilities-heading">
       <h2 id="capabilities-heading" class="login__capabilities-title">このシステムでできること</h2>
@@ -109,6 +112,7 @@ const CAPABILITIES = [
     font-weight: 700;
   }
 
+  // Surface, radius and shadow come from UiCard's `raised` variant; the page owns the layout.
   &__card {
     display: flex;
     flex-direction: column;
@@ -116,9 +120,6 @@ const CAPABILITIES = [
     width: 100%;
     max-width: var(--auth-card-max);
     padding: var(--space-xl) var(--space-lg);
-    border-radius: var(--radius-lg);
-    background: var(--color-surface-lowest);
-    box-shadow: var(--shadow-card);
   }
 
   &__heading {
@@ -136,23 +137,9 @@ const CAPABILITIES = [
     line-height: 1.6;
   }
 
+  // Sizing, colour and focus come from UiButton; only the sheen is specific to this screen.
   &__button {
     position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: var(--space-sm);
-    width: 100%;
-    padding: var(--space-sm) var(--space-md);
-    min-height: 3rem;
-    border: none;
-    border-radius: var(--radius-xl);
-    background: var(--color-primary);
-    color: var(--color-on-primary);
-    font-family: var(--font-ui);
-    font-weight: 600;
-    text-decoration: none;
-    cursor: pointer;
     overflow: hidden;
 
     // A single sheen crossing the button on hover, rather than a looping gradient
@@ -171,17 +158,8 @@ const CAPABILITIES = [
       transition: transform 0.7s ease;
     }
 
-    &:hover {
-      background: color-mix(in srgb, var(--color-primary) 88%, var(--color-on-surface));
-    }
-
     &:hover::after {
       transform: translateX(100%);
-    }
-
-    &:focus-visible {
-      outline: 2px solid var(--color-primary);
-      outline-offset: 2px;
     }
   }
 
