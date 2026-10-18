@@ -22,10 +22,7 @@
           <div class="app-profile-menu__identity">
             <p class="app-profile-menu__name">{{ user.name }}</p>
             <p class="app-profile-menu__email">{{ user.email }}</p>
-            <UiBadge 
-              v-if="studentNumber" 
-              class="app-profile-menu__student-number"
-            >
+            <UiBadge v-if="studentNumber" class="app-profile-menu__student-number">
               {{ studentNumber }}
             </UiBadge>
           </div>
@@ -97,7 +94,6 @@ async function signOut() {
     }
   }
 
-  // Level 2 overlay from the design spec: translucent white, backdrop blur, primary-tinted shadow.
   &__panel {
     position: absolute;
     top: calc(100% + var(--space-sm));
@@ -148,12 +144,6 @@ async function signOut() {
     align-self: flex-start;
   }
 
-  &__items {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-
   &__item {
     display: flex;
     align-items: center;
@@ -172,11 +162,6 @@ async function signOut() {
     &:focus-visible {
       outline: 2px solid var(--color-primary);
       outline-offset: -2px;
-    }
-
-    &:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
     }
 
     &--danger {
