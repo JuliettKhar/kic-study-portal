@@ -1,5 +1,10 @@
 <template>
-  <div ref="root" class="app-profile-menu" @keydown.esc="closeAndFocusTrigger">
+  <div
+    ref="root"
+    class="app-profile-menu"
+    @keydown.esc="closeAndFocusTrigger"
+    @focusout="onFocusOut"
+  >
     <!-- SSR already resolves the session, so this only shows if it is missing. -->
     <UiSkeleton v-if="!user" width="2.25rem" circle />
 
@@ -63,6 +68,16 @@ function closeAndFocusTrigger() {
 // Clicking elsewhere closes the menu without moving focus back to the trigger.
 function onDocumentPointerDown(event: PointerEvent) {
   if (event.target instanceof Node && root.value?.contains(event.target)) return
+
+  isOpen.value = false
+}
+
+// Tabbing past the menu closes it. A null relatedTarget (focus dropped to the
+// body, e.g. clicking non-focusable text inside the panel) is left to the
+// pointerdown handler so it does not close the menu by mistake.
+function onFocusOut(event: FocusEvent) {
+  if (!(event.relatedTarget instanceof Node)) return
+  if (root.value?.contains(event.relatedTarget)) return
 
   isOpen.value = false
 }
