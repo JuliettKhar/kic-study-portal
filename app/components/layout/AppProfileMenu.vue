@@ -22,20 +22,14 @@
           <div class="app-profile-menu__identity">
             <p class="app-profile-menu__name">{{ user.name }}</p>
             <p class="app-profile-menu__email">{{ user.email }}</p>
-            <UiBadge class="app-profile-menu__student-number">{{ studentNumber }}</UiBadge>
+            <UiBadge 
+              v-if="studentNumber" 
+              class="app-profile-menu__student-number"
+            >
+              {{ studentNumber }}
+            </UiBadge>
           </div>
         </div>
-
-        <!-- Placeholders: disabled until their pages exist, so none of them is a dead link. 
-        <ul class="app-profile-menu__items">
-          <li v-for="item in PLACEHOLDER_ITEMS" :key="item.label">
-            <button type="button" class="app-profile-menu__item" disabled>
-              <Icon :name="item.icon" class="app-profile-menu__item-icon" />
-              {{ item.label }}
-            </button>
-          </li>
-        </ul>
-        -->
 
         <hr class="app-profile-menu__divider" />
 
@@ -53,16 +47,6 @@
 </template>
 
 <script setup lang="ts">
-/*
-const PLACEHOLDER_ITEMS = [
-  { label: 'プロフィール', icon: 'lucide:user' },
-  { label: 'アカウント設定', icon: 'lucide:settings' },
-  { label: '通知設定', icon: 'lucide:bell' },
-  { label: '表示言語', icon: 'lucide:languages' },
-  { label: 'ヘルプ', icon: 'lucide:circle-help' },
-] as const
- */
-
 const { user, clear } = useUserSession()
 
 const root = useTemplateRef('root')
@@ -95,7 +79,6 @@ async function signOut() {
 }
 </script>
 
-
 <style scoped lang="scss">
 .app-profile-menu {
   position: relative;
@@ -127,7 +110,7 @@ async function signOut() {
     border-radius: var(--radius-lg);
     background: color-mix(in srgb, var(--color-surface-lowest) 90%, transparent);
     backdrop-filter: blur(16px);
-    box-shadow: var(--shadow-overlay);
+    box-shadow: var(--shadow-card);
   }
 
   &__header {
