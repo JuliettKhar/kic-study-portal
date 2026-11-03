@@ -4,7 +4,7 @@
 
     <div class="app-top-bar__actions">
       <UiSkeleton width="1.5rem" circle />
-      <UiSkeleton width="2.25rem" circle />
+      <LayoutAppProfileMenu />
     </div>
   </header>
 </template>
