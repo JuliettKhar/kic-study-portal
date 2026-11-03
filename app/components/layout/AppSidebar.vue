@@ -1,6 +1,7 @@
 <template>
-  <nav class="app-sidebar" aria-label="Main navigation">
-    <NuxtLink to="/" class="app-sidebar__brand">
+  <div class="app-sidebar">
+    <!-- Also points at the dashboard: kept outside <nav>, and the nav item marks the page. -->
+    <NuxtLink to="/" class="app-sidebar__brand" aria-current-value="false">
       <span class="app-sidebar__brand-tile">
         <Icon name="lucide:graduation-cap" class="app-sidebar__brand-icon" aria-hidden="true" />
       </span>
@@ -11,29 +12,34 @@
       </span>
     </NuxtLink>
 
-    <ul class="app-sidebar__nav">
-      <li v-for="item in NAV_ITEMS" :key="item.to">
-        <!-- Pages that do not exist yet render as a span: a link with aria-disabled would
-             still be focusable and followable. -->
-        <component
-          :is="item.disabled ? 'span' : 'NuxtLink'"
-          :to="item.disabled ? undefined : item.to"
-          class="app-sidebar__item"
-          :class="{
-            'app-sidebar__item--active': isNavItemActive(item, route.path),
-            'app-sidebar__item--disabled': item.disabled,
-          }"
-          :aria-current="isNavItemActive(item, route.path) ? 'page' : undefined"
-        >
-          <Icon :name="item.icon" class="app-sidebar__item-icon" aria-hidden="true" />
-          {{ item.label }}
-        </component>
-      </li>
-    </ul>
-  </nav>
+    <nav aria-label="Main navigation">
+      <ul class="app-sidebar__nav">
+        <li v-for="item in NAV_ITEMS" :key="item.to">
+          <!-- Pages that do not exist yet are not links. -->
+          <component
+            :is="item.disabled ? 'span' : NuxtLink"
+            :to="item.disabled ? undefined : item.to"
+            class="app-sidebar__item"
+            :class="{
+              'app-sidebar__item--active': isNavItemActive(item, route.path),
+              'app-sidebar__item--disabled': item.disabled,
+            }"
+            :aria-disabled="item.disabled ? 'true' : undefined"
+            :aria-current="isNavItemActive(item, route.path) ? 'page' : undefined"
+          >
+            <Icon :name="item.icon" class="app-sidebar__item-icon" aria-hidden="true" />
+            {{ item.label }}
+          </component>
+        </li>
+      </ul>
+    </nav>
+  </div>
 </template>
 
 <script setup lang="ts">
+// Auto-import does not cover `:is="'NuxtLink'"` — the string renders an unknown element.
+import { NuxtLink } from '#components'
+
 const route = useRoute()
 </script>
 
@@ -72,7 +78,7 @@ const route = useRoute()
     background: var(--color-primary);
     color: var(--color-on-primary);
 
-    // The whole logo is one link, so the tile reacts to hovering the text too.
+    // The whole logo is one link.
     .app-sidebar__brand:hover & {
       background: color-mix(in srgb, var(--color-primary) 88%, var(--color-on-surface));
     }
@@ -85,8 +91,8 @@ const route = useRoute()
   &__brand-text {
     display: flex;
     flex-direction: column;
-    gap: var(--space-xs);
     min-width: 0;
+    line-height: 1.3;
   }
 
   &__brand-title {
