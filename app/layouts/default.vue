@@ -15,7 +15,8 @@
 <style scoped lang="scss">
 .app-layout {
   display: grid;
-  grid-template-columns: 268px minmax(0, 1fr);
+  // 256px matches the sidebar column in the mockup (Figma 90:219).
+  grid-template-columns: 256px minmax(0, 1fr);
   min-height: 100vh;
 
   &__sidebar {
