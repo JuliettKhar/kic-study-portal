@@ -94,9 +94,13 @@ Do not use Yarn, pnpm, or Bun for this repository.
 enabled APIs are already configured in the shared `KIC Study Portal` Cloud project — you only
 add a client of your own. Credentials are never shared through the repo.
 
-1. Ask a maintainer for access to the project. They grant your `@kic.ac.jp` account the
-   **OAuth Config Editor** role in [Google Cloud Console](https://console.cloud.google.com)
-   under **IAM & Admin → IAM → Grant access**.
+1. Ask a maintainer for access to the project. In [Google Cloud Console](https://console.cloud.google.com)
+   under **IAM & Admin → IAM → Grant access** they grant your `@kic.ac.jp` account two roles:
+   **OAuth Config Editor** to manage OAuth clients, and **Viewer** to read the project.
+
+   If the Clients page says "You need additional access", sign out of Google and back in before
+   asking for more roles: a session opened before the roles were granted keeps the old
+   permissions, and the message looks identical to genuinely missing access.
 2. Select `KIC Study Portal` in the project picker at the top of the console, then go to
    **APIs & Services → OAuth consent screen → Clients → Create client**: type **Web application**,
    name it after yourself, redirect URI `http://localhost:3000/auth/google`, origins left empty.
