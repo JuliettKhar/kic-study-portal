@@ -1,21 +1,40 @@
 <template>
   <nav class="app-sidebar" aria-label="Main navigation">
-    <div class="app-sidebar__brand">
-      <UiSkeleton width="11rem" height="1.25rem" />
-      <UiSkeleton width="7rem" height="0.75rem" />
-    </div>
+    <NuxtLink to="/" class="app-sidebar__brand">
+      <span class="app-sidebar__brand-tile">
+        <Icon name="lucide:graduation-cap" class="app-sidebar__brand-icon" aria-hidden="true" />
+      </span>
+
+      <span class="app-sidebar__brand-text">
+        <span class="app-sidebar__brand-title">KIC Student Portal</span>
+        <span class="app-sidebar__brand-subtitle">Academic Portal</span>
+      </span>
+    </NuxtLink>
 
     <ul class="app-sidebar__nav">
-      <li v-for="item in NAV_ITEM_COUNT" :key="item" class="app-sidebar__item">
-        <UiSkeleton width="1.25rem" circle />
-        <UiSkeleton :width="item === 1 ? '6.5rem' : '8.5rem'" />
+      <li v-for="item in NAV_ITEMS" :key="item.to">
+        <!-- Pages that do not exist yet render as a span: a link with aria-disabled would
+             still be focusable and followable. -->
+        <component
+          :is="item.disabled ? 'span' : 'NuxtLink'"
+          :to="item.disabled ? undefined : item.to"
+          class="app-sidebar__item"
+          :class="{
+            'app-sidebar__item--active': isNavItemActive(item, route.path),
+            'app-sidebar__item--disabled': item.disabled,
+          }"
+          :aria-current="isNavItemActive(item, route.path) ? 'page' : undefined"
+        >
+          <Icon :name="item.icon" class="app-sidebar__item-icon" aria-hidden="true" />
+          {{ item.label }}
+        </component>
       </li>
     </ul>
   </nav>
 </template>
 
 <script setup lang="ts">
-const NAV_ITEM_COUNT = 4
+const route = useRoute()
 </script>
 
 <style scoped lang="scss">
@@ -29,9 +48,60 @@ const NAV_ITEM_COUNT = 4
 
   &__brand {
     display: flex;
-    flex-direction: column;
+    align-items: center;
     gap: var(--space-sm);
     padding-inline: var(--space-sm);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+
+    &:focus-visible {
+      outline: 2px solid var(--color-primary);
+      outline-offset: 2px;
+    }
+  }
+
+  // Same tile as the login screen, one step smaller.
+  &__brand-tile {
+    display: flex;
+    flex-shrink: 0;
+    justify-content: center;
+    align-items: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: var(--radius-md);
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+
+    // The whole logo is one link, so the tile reacts to hovering the text too.
+    .app-sidebar__brand:hover & {
+      background: color-mix(in srgb, var(--color-primary) 88%, var(--color-on-surface));
+    }
+  }
+
+  &__brand-icon {
+    font-size: 1rem;
+  }
+
+  &__brand-text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    min-width: 0;
+  }
+
+  &__brand-title {
+    color: var(--color-on-surface-strong);
+    font-family: var(--font-ui);
+    // One step down from the mockup: the icon tile takes width the design did not budget for.
+    font-size: var(--font-size-body-md);
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  &__brand-subtitle {
+    color: var(--color-on-surface-muted);
+    font-family: var(--font-ui);
+    font-size: var(--font-size-body-xs);
   }
 
   &__nav {
@@ -49,10 +119,36 @@ const NAV_ITEM_COUNT = 4
     gap: var(--space-sm);
     padding: var(--space-sm) var(--space-md);
     border-radius: var(--radius-lg);
+    color: var(--color-on-surface-variant);
+    font-family: var(--font-ui);
+    font-size: var(--font-size-body-sm);
+    font-weight: 500;
+    text-decoration: none;
+
+    &:hover:not(&--active, &--disabled) {
+      background: var(--color-surface-container);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-primary);
+      outline-offset: -2px;
+    }
+
+    &--active {
+      background: color-mix(in srgb, var(--color-primary) 10%, transparent);
+      color: var(--color-primary);
+      font-weight: 600;
+    }
+
+    &--disabled {
+      color: var(--color-on-surface-faint);
+      cursor: default;
+    }
   }
 
-  &__item:first-child {
-    background: var(--color-surface-container);
+  &__item-icon {
+    flex-shrink: 0;
+    font-size: 1.125rem;
   }
 }
 </style>
