@@ -6,6 +6,7 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     '@nuxt/fonts',
     'nuxt-auth-utils',
+    '@nuxtjs/i18n',
     [
       '@nuxt/icon',
       {
@@ -19,6 +20,27 @@ export default defineNuxtConfig({
     ],
   ],
   css: ['~/assets/styles/main.scss'],
+  i18n: {
+    // See ADR-0004. Message files live in `i18n/locales/<code>/`, one per feature area.
+    defaultLocale: 'ja',
+    strategy: 'no_prefix',
+    locales: [
+      {
+        code: 'ja',
+        language: 'ja-JP',
+        files: ['ja/common.json', 'ja/nav.json', 'ja/auth.json', 'ja/dashboard.json'],
+      },
+      {
+        code: 'en',
+        language: 'en-US',
+        files: ['en/common.json', 'en/nav.json', 'en/auth.json', 'en/dashboard.json'],
+      },
+    ],
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'i18n_locale',
+    },
+  },
   runtimeConfig: {
     auth: {
       // Google Workspace domain allowed to sign in, override with NUXT_AUTH_ALLOWED_DOMAIN.
