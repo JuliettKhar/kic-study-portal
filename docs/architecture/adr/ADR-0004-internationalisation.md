@@ -14,7 +14,7 @@ The project uses [`@nuxtjs/i18n`](https://i18n.nuxtjs.org/) 10.x, configured in 
 
 - Locales: `ja` (`ja-JP`, default) and `en` (`en-US`).
 - URL strategy: `no_prefix`. Routes stay the same for both locales (`/`, `/login`), so the auth middleware, redirects and navigation links need no locale-aware paths. Per-locale URLs would only help SEO, which does not apply to an authenticated portal.
-- Locale persistence: the chosen locale is stored in the `i18n_locale` cookie (`detectBrowserLanguage.useCookie`) and restored on the next visit. On a first visit without the cookie the module picks the browser language when it is `ja` or `en`, otherwise `ja`.
+- Locale persistence: the locale is stored in the `i18n_locale` cookie (`detectBrowserLanguage.useCookie`) and restored on the next visit. On the first visit the server detects the locale (browser language when it is `ja` or `en`, otherwise `ja`) and writes it to the cookie in the first response, so it is used from then on until the user switches it; a later change of the browser language has no effect.
 - `<html lang>` follows the active locale via `useI18n()` in `app/app.vue` and uses the locale's BCP 47 `language` (`ja-JP` / `en-US`).
 
 ### Message files
