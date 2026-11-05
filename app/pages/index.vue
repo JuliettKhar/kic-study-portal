@@ -1,10 +1,7 @@
 <template>
   <div class="dashboard">
     <header class="dashboard__header">
-      <div class="dashboard__greeting">
-        <UiSkeleton width="22rem" height="2.5rem" radius="var(--radius-lg)" />
-        <UiSkeleton width="16rem" />
-      </div>
+      <DashboardWelcomeSection :name="displayName" />
 
       <div class="dashboard__stats">
         <div v-for="stat in STAT_COUNT" :key="stat" class="dashboard__stat">
@@ -34,6 +31,12 @@
 <script setup lang="ts">
 definePageMeta({
   middleware: 'auth',
+})
+
+const { user } = useUserSession()
+const displayName = computed(() => {
+  const name = user.value?.name ?? ''
+  return name.replace(/\d/g, '')
 })
 
 const STAT_COUNT = 2
