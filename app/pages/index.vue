@@ -1,10 +1,7 @@
 <template>
   <div class="dashboard">
     <header class="dashboard__header">
-      <div class="dashboard__greeting">
-        <UiSkeleton width="22rem" height="2.5rem" radius="var(--radius-lg)" />
-        <UiSkeleton width="16rem" />
-      </div>
+      <WelcomeSection name="Taro" />
 
       <div class="dashboard__stats">
         <div v-for="stat in STAT_COUNT" :key="stat" class="dashboard__stat">
