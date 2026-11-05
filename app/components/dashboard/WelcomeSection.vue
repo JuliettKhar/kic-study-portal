@@ -1,7 +1,7 @@
 <template>
   <div class="welcome-section">
     <h2 class="welcome-section__heading">
-      おかえりなさい, <span class="welcome-section__name">{{ name }}</span>
+      おかえりなさい,&nbsp; <span class="welcome-section__name">{{ name }}</span>
     </h2>
     <p class="welcome-section__subtitle">今日のスケジュールとタスクの概要です。</p>
   </div>
