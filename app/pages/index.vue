@@ -1,7 +1,7 @@
 <template>
   <div class="dashboard">
     <header class="dashboard__header">
-      <DashboardWelcomeSection :name="displayName" />
+      <DashboardWelcomeSection name="Taro" />
 
       <div class="dashboard__stats">
         <div v-for="stat in STAT_COUNT" :key="stat" class="dashboard__stat">
@@ -33,12 +33,6 @@ definePageMeta({
   middleware: 'auth',
 })
 
-const { user } = useUserSession()
-const displayName = computed(() => {
-  const name = user.value?.name ?? ''
-  return name.replace(/\d/g, '')
-})
-
 const STAT_COUNT = 2
 </script>
 
@@ -54,12 +48,6 @@ const STAT_COUNT = 2
     align-items: flex-start;
     justify-content: space-between;
     gap: var(--space-lg);
-  }
-
-  &__greeting {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-sm);
   }
 
   &__stats {
