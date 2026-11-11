@@ -18,25 +18,25 @@ defineProps<{
   display: flex;
   flex-direction: column;
   gap: var(--space-sm);
-}
 
-.welcome-section__heading {
-  font-size: var(--font-size-headline-md);
-  font-family: var(--font-content);
-  color: var(--color-on-surface);
-  line-height: var(--font-size-headline-md);
-  display: flex;
-  flex-wrap: wrap;
+  &__heading {
+    font-size: var(--font-size-headline-md);
+    font-family: var(--font-content);
+    color: var(--color-on-surface);
+    line-height: var(--font-size-headline-md);
+    display: flex;
+    flex-wrap: wrap;
+  }
 
-  .welcome-section__name {
+  &__name {
     color: var(--color-primary);
   }
-}
 
-.welcome-section__subtitle {
-  font-size: var(--font-size-body-md);
-  font-family: var(--font-content);
-  color: var(--color-on-surface-variant);
-  margin: 0;
+  &__subtitle {
+    font-size: var(--font-size-body-md);
+    font-family: var(--font-content);
+    color: var(--color-on-surface-variant);
+    margin: 0;
+  }
 }
 </style>
