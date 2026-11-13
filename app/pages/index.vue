@@ -16,7 +16,7 @@
 
     <div class="dashboard__grid">
       <div class="dashboard__column">
-        <UiPlaceholderCard title-width="8rem" :lines="5" />
+        <DashboardTodayClassesSection :classes="TODAY_CLASSES" />
         <UiPlaceholderCard title-width="10rem" :lines="4" />
       </div>
 
@@ -29,11 +29,36 @@
 </template>
 
 <script setup lang="ts">
+import type { TodayClass } from '~/components/dashboard/ClassCard.vue'
+
 definePageMeta({
   middleware: 'auth',
 })
 
 const STAT_COUNT = 2
+
+// Mock data from the dashboard mockup. Real schedule data and links arrive in #16.
+const TODAY_CLASSES: TodayClass[] = [
+  {
+    period: '2限',
+    time: '10:45-12:15',
+    delivery: 'online',
+    title: '情報ネットワーク特論',
+    teacher: '石野先生',
+    room: 'Room 402',
+    meetUrl: '#',
+    syllabusUrl: '#',
+  },
+  {
+    period: '3限',
+    time: '13:00-14:30',
+    delivery: 'classroom',
+    title: 'ソフトウェア工学',
+    teacher: '田中先生',
+    room: 'Room 305',
+    syllabusUrl: '#',
+  },
+]
 </script>
 
 <style scoped lang="scss">
