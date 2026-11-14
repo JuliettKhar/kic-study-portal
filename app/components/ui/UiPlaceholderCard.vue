@@ -5,7 +5,7 @@
       <div class="placeholder-card__title" :style="{ maxWidth: titleWidth }">
         <UiSkeleton height="1rem" />
       </div>
-      <span class="placeholder-card__badge">{{ note }}</span>
+      <span class="placeholder-card__badge">{{ note ?? $t('common.comingSoon') }}</span>
     </header>
 
     <div class="placeholder-card__body">
@@ -20,12 +20,12 @@
 withDefaults(
   defineProps<{
     titleWidth?: string
+    /** Badge text; defaults to the translated `common.comingSoon`. */
     note?: string
     lines?: number
   }>(),
   {
     titleWidth: '9rem',
-    note: 'Coming soon',
     lines: 3,
   },
 )
