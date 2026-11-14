@@ -1,5 +1,8 @@
 {
   "nav": {
-    "dashboard": "ダッシュボード"
+    "dashboard": "ダッシュボード",
+    "classSchedule": "時間割",
+    "announcements": "お知らせ",
+    "learningResources": "学習リソース"
   }
 }

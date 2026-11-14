@@ -1,5 +1,8 @@
 {
   "nav": {
-    "dashboard": "Dashboard"
+    "dashboard": "Dashboard",
+    "classSchedule": "Class Schedule",
+    "announcements": "Announcements",
+    "learningResources": "Learning Resources"
   }
 }

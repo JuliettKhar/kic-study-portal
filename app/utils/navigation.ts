@@ -1,5 +1,6 @@
 export interface NavItem {
-  label: string
+  /** Message key under `nav.*`, translated where the item is rendered. */
+  labelKey: string
   /** Lucide icon name. */
   icon: string
   to: string
@@ -7,12 +8,12 @@ export interface NavItem {
   disabled?: boolean
 }
 
-/** Sidebar navigation from the dashboard mockup. Labels stay English until #20. */
+/** Sidebar navigation from the dashboard mockup. */
 export const NAV_ITEMS: NavItem[] = [
-  { label: 'Dashboard', icon: 'lucide:layout-dashboard', to: '/' },
-  { label: 'Class Schedule', icon: 'lucide:calendar-days', to: '/schedule', disabled: true },
-  { label: 'Announcements', icon: 'lucide:bell', to: '/announcements', disabled: true },
-  { label: 'Learning Resources', icon: 'lucide:book-open', to: '/resources', disabled: true },
+  { labelKey: 'nav.dashboard', icon: 'lucide:layout-dashboard', to: '/' },
+  { labelKey: 'nav.classSchedule', icon: 'lucide:calendar-days', to: '/schedule', disabled: true },
+  { labelKey: 'nav.announcements', icon: 'lucide:bell', to: '/announcements', disabled: true },
+  { labelKey: 'nav.learningResources', icon: 'lucide:book-open', to: '/resources', disabled: true },
 ]
 
 /** The dashboard matches the root exactly; sections also match their nested routes. */
