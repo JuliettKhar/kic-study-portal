@@ -1,5 +1,13 @@
 {
   "common": {
+    "brandTitle": "KIC Student Portal",
+    "brandSubtitle": "学習ポータル",
+    "mainNavigation": "メインナビゲーション",
+    "search": "検索",
+    "searchPlaceholder": "検索...",
+    "notifications": "通知",
+    "profileMenu": "プロフィールメニュー",
+    "signOut": "ログアウト",
     "version": "Version 1.0 Prototype",
     "copyright": "© {year} Graduate School of IT. All rights reserved."
   }

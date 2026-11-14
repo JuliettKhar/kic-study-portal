@@ -5,13 +5,17 @@
       <input
         type="search"
         class="app-top-bar__search-input"
-        placeholder="Search..."
-        aria-label="検索"
+        :placeholder="$t('common.searchPlaceholder')"
+        :aria-label="$t('common.search')"
       />
     </div>
 
     <div class="app-top-bar__actions">
-      <button type="button" class="app-top-bar__icon-button" aria-label="通知">
+      <button
+        type="button"
+        class="app-top-bar__icon-button"
+        :aria-label="$t('common.notifications')"
+      >
         <Icon name="lucide:bell" aria-hidden="true" />
       </button>
       <!-- #20: the language switcher goes here, next to the profile menu. -->
