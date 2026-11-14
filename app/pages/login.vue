@@ -3,15 +3,18 @@ definePageMeta({
   layout: 'auth',
 })
 
+const { t } = useI18n()
+
+// Joined here, not in the message: `|` separates plural forms in vue-i18n messages.
 useHead({
-  title: 'ログイン | KIC Student Dashboard',
+  title: () => `${t('auth.pageTitle')} | ${t('auth.brandTitle')}`,
 })
 
 const CAPABILITIES = [
-  { label: '時間割', icon: 'lucide:calendar-days' },
-  { label: 'Google Meet', icon: 'lucide:video' },
-  { label: '履修ルール', icon: 'lucide:book-open' },
-  { label: 'お知らせ', icon: 'lucide:bell' },
+  { labelKey: 'auth.features.timetable', icon: 'lucide:calendar-days' },
+  { labelKey: 'auth.features.googleMeet', icon: 'lucide:video' },
+  { labelKey: 'auth.features.courseRules', icon: 'lucide:book-open' },
+  { labelKey: 'auth.features.announcements', icon: 'lucide:bell' },
 ] as const
 </script>
 
@@ -21,16 +24,14 @@ const CAPABILITIES = [
       <span class="login__brand-tile">
         <Icon name="lucide:graduation-cap" class="login__brand-icon" />
       </span>
-      <h1 class="login__brand-title">KIC Student Dashboard</h1>
+      <h1 class="login__brand-title">{{ $t('auth.brandTitle') }}</h1>
     </header>
 
     <!-- The heading is styled for this page, so it stays in the slot and names the card by id
          rather than going through UiCard's `title` prop. -->
     <UiCard variant="raised" class="login__card" aria-labelledby="login-heading">
-      <h2 id="login-heading" class="login__heading">KIC学生ポータルへようこそ</h2>
-      <p class="login__lead">
-        授業スケジュール、Google Meetのリンク、履修ルールなどの学習情報を一つの画面で確認できます。
-      </p>
+      <h2 id="login-heading" class="login__heading">{{ $t('auth.welcomeHeading') }}</h2>
+      <p class="login__lead">{{ $t('auth.lead') }}</p>
 
       <!-- A full page load, not a router navigation: OAuth is a chain of cross-origin redirects. -->
       <UiButton size="lg" block href="/auth/google" class="login__button">
@@ -43,16 +44,16 @@ const CAPABILITIES = [
             height="28"
           />
         </template>
-        KIC Googleアカウントでログイン
+        {{ $t('auth.signInButton') }}
       </UiButton>
 
       <div class="login__notice">
         <p class="login__notice-title">
           <Icon name="lucide:shield-check" class="login__notice-icon" />
-          安全なログイン
+          {{ $t('auth.secureSignInTitle') }}
         </p>
-        <p>KICが提供する認証システムを利用してログインします。</p>
-        <p>パスワードは本システムに保存されません。</p>
+        <p>{{ $t('auth.secureSignInProvider') }}</p>
+        <p>{{ $t('auth.secureSignInPassword') }}</p>
       </div>
 
       <!-- Hidden until a help page exists: "/" is behind the auth middleware and bounces back here. -->
@@ -60,11 +61,13 @@ const CAPABILITIES = [
     </UiCard>
 
     <section class="login__capabilities" aria-labelledby="capabilities-heading">
-      <h2 id="capabilities-heading" class="login__capabilities-title">このシステムでできること</h2>
+      <h2 id="capabilities-heading" class="login__capabilities-title">
+        {{ $t('auth.capabilitiesHeading') }}
+      </h2>
       <ul class="login__chips">
-        <li v-for="item in CAPABILITIES" :key="item.label" class="login__chip">
+        <li v-for="item in CAPABILITIES" :key="item.labelKey" class="login__chip">
           <Icon :name="item.icon" class="login__chip-icon" />
-          {{ item.label }}
+          {{ $t(item.labelKey) }}
         </li>
       </ul>
     </section>

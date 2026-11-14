@@ -12,8 +12,8 @@ const currentYear = useState('auth-footer-year', () => new Date().getFullYear())
     </main>
 
     <footer class="auth-layout__footer">
-      <span>Version 1.0 Prototype</span>
-      <span>&copy; {{ currentYear }} Graduate School of IT. All rights reserved.</span>
+      <span>{{ $t('common.version') }}</span>
+      <span>{{ $t('common.copyright', { year: currentYear }) }}</span>
     </footer>
   </div>
 </template>
