@@ -7,12 +7,12 @@
       </span>
 
       <span class="app-sidebar__brand-text">
-        <span class="app-sidebar__brand-title">KIC Student Portal</span>
-        <span class="app-sidebar__brand-subtitle">Academic Portal</span>
+        <span class="app-sidebar__brand-title">{{ $t('common.brandTitle') }}</span>
+        <span class="app-sidebar__brand-subtitle">{{ $t('common.brandSubtitle') }}</span>
       </span>
     </NuxtLink>
 
-    <nav aria-label="Main navigation">
+    <nav :aria-label="$t('common.mainNavigation')">
       <ul class="app-sidebar__nav">
         <li v-for="item in NAV_ITEMS" :key="item.to">
           <!-- Pages that do not exist yet are not links. -->

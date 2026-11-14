@@ -13,7 +13,7 @@
         ref="trigger"
         type="button"
         class="app-profile-menu__trigger"
-        aria-label="プロフィールメニュー"
+        :aria-label="$t('common.profileMenu')"
         :aria-expanded="isOpen"
         :aria-controls="panelId"
         @click="isOpen = !isOpen"
@@ -41,7 +41,7 @@
           @click="signOut"
         >
           <Icon name="lucide:log-out" class="app-profile-menu__item-icon" />
-          ログアウト
+          {{ $t('common.signOut') }}
         </button>
       </div>
     </template>
