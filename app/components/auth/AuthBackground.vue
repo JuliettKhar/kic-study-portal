@@ -2,24 +2,25 @@
   <div class="auth-background" aria-hidden="true">
     <div
       v-for="(item, index) in FLOATING_ITEMS"
-      :key="item.label"
+      :key="item.labelKey"
       :class="['auth-background__item', `auth-background__item--${item.side}`]"
       :style="{ '--x': item.x, '--y': item.y, '--float-delay': `${index * -1.2}s` }"
     >
       <span class="auth-background__icon">
         <Icon :name="item.icon" class="auth-background__glyph" />
-        <span v-if="item.badge" class="auth-background__badge">{{ item.badge }}</span>
+        <span v-if="item.badgeKey" class="auth-background__badge">{{ $t(item.badgeKey) }}</span>
       </span>
-      <span class="auth-background__label">{{ item.label }}</span>
+      <span class="auth-background__label">{{ $t(item.labelKey) }}</span>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 interface FloatingItem {
-  label: string
+  /** Message key under `auth.features.*`. */
+  labelKey: string
   icon: string
-  badge?: string
+  badgeKey?: string
   side: 'left' | 'right'
   // Horizontal position inside the side gutter, measured from the outer edge (0–1).
   x: number
@@ -31,19 +32,49 @@ interface FloatingItem {
 // y keeps every item beside the card, above the wider capability chips and footer.
 // The right column mirrors the left one.
 const FLOATING_ITEMS: FloatingItem[] = [
-  { label: '時間割', icon: 'lucide:calendar-days', side: 'left', x: 0.58, y: '15%' },
-  { label: '履修ルール', icon: 'lucide:book-open', side: 'left', x: 0.36, y: '35%' },
-  { label: '今日の授業', icon: 'lucide:calendar-check', side: 'left', x: 0.67, y: '52%' },
   {
-    label: 'AIアシスタント',
+    labelKey: 'auth.features.timetable',
+    icon: 'lucide:calendar-days',
+    side: 'left',
+    x: 0.58,
+    y: '15%',
+  },
+  {
+    labelKey: 'auth.features.courseRules',
+    icon: 'lucide:book-open',
+    side: 'left',
+    x: 0.36,
+    y: '35%',
+  },
+  {
+    labelKey: 'auth.features.todayClasses',
+    icon: 'lucide:calendar-check',
+    side: 'left',
+    x: 0.67,
+    y: '52%',
+  },
+  {
+    labelKey: 'auth.features.aiAssistant',
     icon: 'lucide:bot',
-    badge: 'Future',
+    badgeKey: 'auth.features.futureBadge',
     side: 'right',
     x: 0.58,
     y: '15%',
   },
-  { label: 'Google Meet', icon: 'lucide:video', side: 'right', x: 0.36, y: '35%' },
-  { label: 'お知らせ', icon: 'lucide:bell', side: 'right', x: 0.67, y: '52%' },
+  {
+    labelKey: 'auth.features.googleMeet',
+    icon: 'lucide:video',
+    side: 'right',
+    x: 0.36,
+    y: '35%',
+  },
+  {
+    labelKey: 'auth.features.announcements',
+    icon: 'lucide:bell',
+    side: 'right',
+    x: 0.67,
+    y: '52%',
+  },
 ]
 </script>
 
