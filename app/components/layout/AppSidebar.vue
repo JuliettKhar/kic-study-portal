@@ -28,7 +28,7 @@
             :aria-current="isNavItemActive(item, route.path) ? 'page' : undefined"
           >
             <Icon :name="item.icon" class="app-sidebar__item-icon" aria-hidden="true" />
-            {{ item.label }}
+            {{ $t(item.labelKey) }}
           </component>
         </li>
       </ul>
