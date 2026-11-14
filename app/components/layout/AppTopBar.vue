@@ -18,11 +18,28 @@
       >
         <Icon name="lucide:bell" aria-hidden="true" />
       </button>
-      <!-- #20: the language switcher goes here, next to the profile menu. -->
+      <!-- Labelled in the target language, so it can be found without reading the current one. -->
+      <button
+        type="button"
+        class="app-top-bar__icon-button"
+        :aria-label="$t('common.switchLocale')"
+        @click="toggleLocale"
+      >
+        <Icon name="lucide:languages" aria-hidden="true" />
+      </button>
       <LayoutAppProfileMenu />
     </div>
   </header>
 </template>
+
+<script setup lang="ts">
+const { locale, setLocale } = useI18n()
+
+// Two locales (ADR-0004), so the control toggles instead of opening a menu.
+async function toggleLocale() {
+  await setLocale(locale.value === 'ja' ? 'en' : 'ja')
+}
+</script>
 
 <style scoped lang="scss">
 .app-top-bar {
