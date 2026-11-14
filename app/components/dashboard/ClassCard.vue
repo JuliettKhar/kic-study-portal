@@ -3,7 +3,7 @@
     <div class="class-card__body">
       <div class="class-card__badges">
         <UiBadge variant="neutral">{{ item.period }} {{ item.time }}</UiBadge>
-        <UiBadge :variant="delivery.variant">{{ delivery.label }}</UiBadge>
+        <UiBadge :variant="delivery.variant">{{ $t(delivery.labelKey) }}</UiBadge>
       </div>
 
       <h3 class="class-card__title">{{ item.title }}</h3>
@@ -25,10 +25,10 @@
         <template #icon>
           <Icon name="lucide:video" aria-hidden="true" />
         </template>
-        Meet
+        {{ $t('dashboard.classCard.meet') }}
       </UiButton>
       <UiButton v-if="item.syllabusUrl" variant="outline" :href="item.syllabusUrl">
-        シラバス
+        {{ $t('dashboard.classCard.syllabus') }}
       </UiButton>
     </div>
   </article>
@@ -53,10 +53,9 @@ export interface TodayClass {
 
 const props = defineProps<{ item: TodayClass }>()
 
-// Labels stay inline until #20.
 const DELIVERY = {
-  online: { label: 'Online', variant: 'info' },
-  classroom: { label: 'Classroom', variant: 'outline' },
+  online: { labelKey: 'dashboard.classCard.online', variant: 'info' },
+  classroom: { labelKey: 'dashboard.classCard.classroom', variant: 'outline' },
 } as const
 
 const delivery = computed(() => DELIVERY[props.item.delivery])

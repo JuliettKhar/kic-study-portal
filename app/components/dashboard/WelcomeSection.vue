@@ -1,9 +1,12 @@
 <template>
   <div class="welcome-section">
-    <h2 class="welcome-section__heading">
-      おかえりなさい,&nbsp; <span class="welcome-section__name">{{ name }}</span>
-    </h2>
-    <p class="welcome-section__subtitle">今日のスケジュールとタスクの概要です。</p>
+    <!-- The name is a slot so it keeps its own styling and each locale can place it. -->
+    <i18n-t keypath="dashboard.welcome.heading" tag="h2" class="welcome-section__heading">
+      <template #name>
+        <span class="welcome-section__name">{{ name }}</span>
+      </template>
+    </i18n-t>
+    <p class="welcome-section__subtitle">{{ $t('dashboard.welcome.subtitle') }}</p>
   </div>
 </template>
 

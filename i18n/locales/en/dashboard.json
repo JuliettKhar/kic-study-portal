@@ -1,3 +1,19 @@
 {
-  "dashboard": {}
+  "dashboard": {
+    "welcome": {
+      "heading": "Welcome back, {name}",
+      "subtitle": "Here's an overview of today's schedule and tasks."
+    },
+    "todayClasses": {
+      "title": "Today's classes",
+      "todayBadge": "Today",
+      "empty": "No classes today"
+    },
+    "classCard": {
+      "online": "Online",
+      "classroom": "Classroom",
+      "meet": "Meet",
+      "syllabus": "Syllabus"
+    }
+  }
 }
