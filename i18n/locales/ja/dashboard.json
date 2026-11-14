@@ -1,3 +1,19 @@
 {
-  "dashboard": {}
+  "dashboard": {
+    "welcome": {
+      "heading": "おかえりなさい, {name}",
+      "subtitle": "今日のスケジュールとタスクの概要です。"
+    },
+    "todayClasses": {
+      "title": "本日の授業",
+      "todayBadge": "Today",
+      "empty": "本日の授業はありません"
+    },
+    "classCard": {
+      "online": "オンライン",
+      "classroom": "対面",
+      "meet": "Meet",
+      "syllabus": "シラバス"
+    }
+  }
 }

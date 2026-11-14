@@ -1,9 +1,9 @@
 <template>
-  <UiCard title="本日の授業" icon="lucide:clock">
+  <UiCard :title="$t('dashboard.todayClasses.title')" icon="lucide:clock">
     <template #actions>
       <UiBadge variant="warning">
         <span class="today-classes__dot" aria-hidden="true" />
-        Today
+        {{ $t('dashboard.todayClasses.todayBadge') }}
       </UiBadge>
     </template>
 
@@ -12,7 +12,7 @@
         <DashboardClassCard :item="item" />
       </li>
     </ul>
-    <p v-else class="today-classes__empty">本日の授業はありません</p>
+    <p v-else class="today-classes__empty">{{ $t('dashboard.todayClasses.empty') }}</p>
   </UiCard>
 </template>
 
