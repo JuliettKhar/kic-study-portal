@@ -23,6 +23,7 @@
         type="button"
         class="app-top-bar__icon-button"
         :aria-label="$t('common.switchLocale')"
+        :lang="locale === 'ja' ? 'en' : 'ja'"
         @click="toggleLocale"
       >
         <Icon name="lucide:languages" aria-hidden="true" />
