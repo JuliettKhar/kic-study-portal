@@ -26,6 +26,7 @@ withDefaults(
   }>(),
   {
     titleWidth: '9rem',
+    note: undefined,
     lines: 3,
   },
 )
