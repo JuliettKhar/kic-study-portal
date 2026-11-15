@@ -130,6 +130,12 @@ The application will be available at:
 
 [http://localhost:3000](http://localhost:3000)
 
+### Debug tools (development only)
+
+`/debug/google` checks the Google API client after signing in: token refresh, missing scopes,
+revoked access and the redirect to `/login`. The page is removed from production builds and its
+API (`/api/debug/google`) answers 404 there. Steps and expected results: issue #37, "Manual testing".
+
 ---
 
 ## Development Workflow

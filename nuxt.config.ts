@@ -47,6 +47,18 @@ export default defineNuxtConfig({
       allowedDomain: 'st.kic.ac.jp',
     },
   },
+  $production: {
+    hooks: {
+      // Development-only tools under app/pages/debug/ (their APIs answer 404 outside development).
+      'pages:extend'(pages) {
+        for (let i = pages.length - 1; i >= 0; i--) {
+          if (pages[i]?.path.startsWith('/debug/')) {
+            pages.splice(i, 1)
+          }
+        }
+      },
+    },
+  },
   fonts: {
     // Weights used by the typography scale in docs/design/design.md; the module loads only 400 by default.
     defaults: {

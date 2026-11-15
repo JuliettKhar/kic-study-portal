@@ -19,7 +19,10 @@ export interface GoogleAccount {
 /** The access granted by the student during the OAuth consent step. */
 export interface GoogleGrant {
   accessToken: string
-  /** Only returned when the grant was requested with `access_type=offline`. */
+  /**
+   * Returned at consent when the grant uses `access_type=offline`; on refresh Google
+   * only occasionally issues a new one.
+   */
   refreshToken?: string
   /** Absolute expiry of the access token, as a Unix timestamp in milliseconds. */
   expiresAt: number
@@ -65,19 +68,33 @@ export function toGoogleAccount(user: unknown): GoogleAccount {
 
 export function toGoogleGrant(tokens: unknown): GoogleGrant {
   const payload = asRecord(tokens, 'Google token')
+
+  return {
+    ...readToken(payload, 'Google token'),
+    scopes: readString(payload, 'scope', 'Google token').split(' '),
+  }
+}
+
+export function toGoogleRefreshedToken(tokens: unknown): GoogleRefreshedToken {
+  return readToken(asRecord(tokens, 'Google token refresh'), 'Google token refresh')
+}
+
+function readToken(payload: Record<string, unknown>, source: string): GoogleRefreshedToken {
   const expiresIn = payload.expires_in
 
   if (typeof expiresIn !== 'number') {
     throw createError({
       statusCode: 502,
-      statusMessage: 'Missing "expires_in" in Google token payload',
+      statusMessage: `Missing "expires_in" in ${source} payload`,
     })
   }
 
   return {
-    accessToken: readString(payload, 'access_token', 'Google token'),
+    accessToken: readString(payload, 'access_token', source),
     refreshToken: readOptionalString(payload, 'refresh_token'),
     expiresAt: Date.now() + expiresIn * 1000,
-    scopes: readString(payload, 'scope', 'Google token').split(' '),
   }
 }
+
+/** A new access token issued for the stored refresh token; granted scopes do not change. */
+export type GoogleRefreshedToken = Omit<GoogleGrant, 'scopes'>
