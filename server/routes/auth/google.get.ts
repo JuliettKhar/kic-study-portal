@@ -5,23 +5,11 @@
  * redirects to Google, and Google redirects back here with the code.
  * This path must match the authorised redirect URI in Google Cloud Console.
  */
-
-/** Scopes requested at consent. Keep in sync with the list in ADR-0003. */
-const SCOPES = [
-  'openid',
-  'email',
-  'profile',
-  'https://www.googleapis.com/auth/calendar.readonly',
-  'https://www.googleapis.com/auth/classroom.courses.readonly',
-  'https://www.googleapis.com/auth/classroom.course-work.readonly',
-  'https://www.googleapis.com/auth/classroom.student-submissions.me.readonly',
-  'https://www.googleapis.com/auth/classroom.announcements.readonly',
-  'https://www.googleapis.com/auth/classroom.courseworkmaterials.readonly',
-]
+import { SIGN_IN_SCOPES } from '~~/server/utils/google-scopes'
 
 export default defineOAuthGoogleEventHandler({
   config: {
-    scope: SCOPES,
+    scope: SIGN_IN_SCOPES,
     authorizationParams: {
       // Required for Google to return a refresh token alongside the access token.
       access_type: 'offline',
