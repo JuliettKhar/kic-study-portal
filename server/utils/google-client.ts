@@ -19,7 +19,7 @@ export async function hasGoogleScope(event: H3Event, scope: GoogleScope): Promis
     return requireReauth(event, 'no Google grant in session')
   }
 
-  return session.secure?.scopes.includes(scope) ?? false
+  return session.secure.scopes.includes(scope)
 }
 
 /** Fails with `ScopeMissing` before calling Google, so a widget can show "access not granted". */

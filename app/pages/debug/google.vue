@@ -21,6 +21,16 @@ async function call(query: string) {
     result.value = String(error)
   }
 }
+
+// Each call must be rejected by the $api guard before any request is sent.
+async function blocked(url: string, options: Record<string, unknown> = {}) {
+  try {
+    await useNuxtApp().$api(url, options)
+    result.value = `NOT BLOCKED: ${url}`
+  } catch (error) {
+    result.value = `${url} → ${String(error)}`
+  }
+}
 </script>
 
 <template>
@@ -28,6 +38,12 @@ async function call(query: string) {
     <p>SSR: {{ ssrError ? String(ssrError) : JSON.stringify(ssr) }}</p>
     <button @click="call('')">call</button>
     <button @click="call('?expire=1')">call with expired token</button>
+    <!-- Expected: "$api only calls the app's own /api routes" for each. -->
+    <button @click="blocked('https://example.com/api/x')">blocked: other host</button>
+    <button @click="blocked('/auth/google')">blocked: not /api/</button>
+    <button @click="blocked('/api/debug/google', { baseURL: 'https://example.com' })">
+      blocked: other baseURL
+    </button>
     <pre>{{ result }}</pre>
   </div>
 </template>
