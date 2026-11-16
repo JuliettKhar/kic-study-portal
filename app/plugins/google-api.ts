@@ -8,6 +8,8 @@
 export default defineNuxtPlugin((nuxtApp) => {
   // During SSR the request comes from the server, not the browser: forward the student's cookie.
   const headers = useRequestHeaders(['cookie'])
+  // `$fetch.create()` inherits Nuxt's default `baseURL` (the app's own base), so only a different one is rejected.
+  const appBaseURL = useRuntimeConfig().app.baseURL
   const api = $fetch.create({
     headers,
     // The server already decided the outcome; a client retry would call Google again.
@@ -21,7 +23,11 @@ export default defineNuxtPlugin((nuxtApp) => {
     },
     onRequest({ request, options }) {
       // The forwarded session cookie must only reach the app's own API.
-      if (typeof request !== 'string' || !request.startsWith('/api/') || options.baseURL) {
+      if (
+        typeof request !== 'string' ||
+        !request.startsWith('/api/') ||
+        (options.baseURL && options.baseURL !== appBaseURL)
+      ) {
         throw new Error("$api only calls the app's own /api routes")
       }
     },
