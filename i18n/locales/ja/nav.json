@@ -3,6 +3,10 @@
     "dashboard": "ダッシュボード",
     "classSchedule": "時間割",
     "announcements": "お知らせ",
-    "learningResources": "学習リソース"
+    "learningResources": "学習リソース",
+    "short": {
+      "dashboard": "ホーム",
+      "learningResources": "学習"
+    }
   }
 }

@@ -85,9 +85,10 @@ const TODAY_CLASSES: TodayClass[] = [
     align-items: center;
     gap: var(--space-sm);
     padding: var(--space-md);
-    border: 1px solid var(--color-outline-variant);
+    border: 1px solid var(--color-outline-subtle);
     border-radius: var(--radius-xl);
     background: var(--color-surface-lowest);
+    box-shadow: var(--shadow-surface);
   }
 
   &__stat-text {

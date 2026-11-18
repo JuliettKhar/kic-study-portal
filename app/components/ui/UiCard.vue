@@ -39,13 +39,16 @@ const titleId = useId()
 </script>
 
 <style scoped lang="scss">
+@use '~/assets/styles/tokens/breakpoints' as bp;
+
 .ui-card {
   padding: var(--space-lg);
   background: var(--color-surface-lowest);
 
   &--outlined {
-    border: 1px solid var(--color-outline-variant);
+    border: 1px solid var(--color-outline-subtle);
     border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-surface);
   }
 
   &--raised {
@@ -60,6 +63,9 @@ const titleId = useId()
     justify-content: flex-end;
     gap: var(--space-md);
     margin-bottom: var(--space-md);
+    // Figma 90:45: thin divider under the title row.
+    padding-bottom: var(--space-sm);
+    border-bottom: 1px solid color-mix(in srgb, var(--color-outline-variant) 30%, transparent);
   }
 
   &__title {
@@ -76,6 +82,20 @@ const titleId = useId()
   &__icon {
     flex-shrink: 0;
     color: var(--color-primary);
+  }
+
+  // Mobile (Figma 303:2): section titles are Noto Sans JP Bold 14/20.
+  @media (max-width: bp.$mobile - 0.02px) {
+    &__title {
+      font-family: var(--font-content);
+      font-size: var(--font-size-body-sm);
+      font-weight: 700;
+      line-height: 1.25rem;
+    }
+
+    &__icon {
+      font-size: 0.9375rem;
+    }
   }
 }
 </style>

@@ -13,37 +13,41 @@
         ref="trigger"
         type="button"
         class="app-profile-menu__trigger"
-        :aria-label="$t('common.profileMenu')"
+        :aria-label="$t('common.profileMenuFor', { name: user.name })"
         :aria-expanded="isOpen"
         :aria-controls="panelId"
         @click="isOpen = !isOpen"
       >
         <UiAvatar :src="user.picture" />
+        <!-- Tablet only (Figma 303:239). Already part of the button's aria-label. -->
+        <span class="app-profile-menu__trigger-name" aria-hidden="true">{{ user.name }}</span>
       </button>
 
-      <div v-if="isOpen" :id="panelId" class="app-profile-menu__panel">
-        <div class="app-profile-menu__header">
-          <UiAvatar :src="user.picture" size="2.75rem" />
-          <div class="app-profile-menu__identity">
-            <p class="app-profile-menu__name">{{ user.name }}</p>
-            <p class="app-profile-menu__email">{{ user.email }}</p>
-            <UiBadge v-if="studentNumber" class="app-profile-menu__student-number">
-              {{ studentNumber }}
-            </UiBadge>
+      <Transition name="app-profile-menu-panel">
+        <div v-if="isOpen" :id="panelId" class="app-profile-menu__panel">
+          <div class="app-profile-menu__header">
+            <UiAvatar :src="user.picture" size="2.75rem" />
+            <div class="app-profile-menu__identity">
+              <p class="app-profile-menu__name">{{ user.name }}</p>
+              <p class="app-profile-menu__email">{{ user.email }}</p>
+              <UiBadge v-if="studentNumber" class="app-profile-menu__student-number">
+                {{ studentNumber }}
+              </UiBadge>
+            </div>
           </div>
+
+          <hr class="app-profile-menu__divider" />
+
+          <button
+            type="button"
+            class="app-profile-menu__item app-profile-menu__item--danger"
+            @click="signOut"
+          >
+            <Icon name="lucide:log-out" class="app-profile-menu__item-icon" />
+            {{ $t('common.signOut') }}
+          </button>
         </div>
-
-        <hr class="app-profile-menu__divider" />
-
-        <button
-          type="button"
-          class="app-profile-menu__item app-profile-menu__item--danger"
-          @click="signOut"
-        >
-          <Icon name="lucide:log-out" class="app-profile-menu__item-icon" />
-          {{ $t('common.signOut') }}
-        </button>
-      </div>
+      </Transition>
     </template>
   </div>
 </template>
@@ -92,11 +96,15 @@ async function signOut() {
 </script>
 
 <style scoped lang="scss">
+@use '~/assets/styles/tokens/breakpoints' as bp;
+
 .app-profile-menu {
   position: relative;
 
   &__trigger {
     display: flex;
+    align-items: center;
+    gap: var(--space-sm);
     padding: 0;
     border: none;
     border-radius: var(--radius-full);
@@ -109,8 +117,22 @@ async function signOut() {
     }
   }
 
+  &__trigger-name {
+    display: none;
+    max-width: 8rem;
+    overflow: hidden;
+    color: var(--color-on-surface-strong);
+    font-family: var(--font-ui);
+    font-size: var(--font-size-body-sm);
+    font-weight: 600;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
   &__panel {
     position: absolute;
+    // Grows from the trigger corner.
+    transform-origin: top right;
     top: calc(100% + var(--space-sm));
     right: 0;
     // No z-index scale exists yet; this only has to clear the page content.
@@ -201,6 +223,57 @@ async function signOut() {
     margin: var(--space-sm) 0;
     border: none;
     border-top: 1px solid var(--color-outline-subtle);
+  }
+
+  // Tablet (Figma 303:239): divider, smaller avatar and the name beside it.
+  @media (max-width: bp.$tablet - 0.02px) {
+    --ui-avatar-size: 2rem;
+    padding-left: var(--space-sm);
+    border-left: 1px solid var(--color-outline-subtle);
+
+    &__trigger {
+      border-radius: var(--radius-md);
+    }
+
+    &__trigger-name {
+      display: block;
+    }
+  }
+
+  // Mobile (Figma 303:2): avatar only.
+  @media (max-width: bp.$mobile - 0.02px) {
+    --ui-avatar-size: 1.75rem;
+    padding-left: 0;
+    border-left: none;
+
+    &__trigger {
+      border-radius: var(--radius-full);
+    }
+
+    &__trigger-name {
+      display: none;
+    }
+  }
+}
+
+// Fades in with a short drop from the trigger, and back out on close.
+.app-profile-menu-panel-enter-active,
+.app-profile-menu-panel-leave-active {
+  transition:
+    opacity 0.15s ease-out,
+    transform 0.15s ease-out;
+}
+
+.app-profile-menu-panel-enter-from,
+.app-profile-menu-panel-leave-to {
+  opacity: 0;
+  transform: translateY(-0.25rem) scale(0.98);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .app-profile-menu-panel-enter-active,
+  .app-profile-menu-panel-leave-active {
+    transition: none;
   }
 }
 </style>

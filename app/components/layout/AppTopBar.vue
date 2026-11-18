@@ -1,5 +1,22 @@
 <template>
   <header class="app-top-bar">
+    <!-- Tablet only: opens the sidebar navigation as a drawer. -->
+    <button
+      type="button"
+      class="app-top-bar__icon-button app-top-bar__menu"
+      :aria-label="$t('common.openMenu')"
+      aria-haspopup="dialog"
+      :aria-expanded="menuOpen"
+      :aria-controls="menuControls"
+      @click="emit('toggleMenu')"
+    >
+      <Icon name="lucide:menu" aria-hidden="true" />
+    </button>
+
+    <!-- The sidebar logo is hidden below desktop, so the top bar carries it. -->
+    <LayoutAppBrand class="app-top-bar__brand app-top-bar__brand--full" />
+    <LayoutAppBrand variant="short" class="app-top-bar__brand app-top-bar__brand--short" />
+
     <div class="app-top-bar__search">
       <Icon name="lucide:search" class="app-top-bar__search-icon" aria-hidden="true" />
       <input
@@ -34,6 +51,15 @@
 </template>
 
 <script setup lang="ts">
+defineProps<{
+  /** Whether the navigation drawer is open, for the menu button state. */
+  menuOpen: boolean
+  /** Id of the drawer the menu button controls. */
+  menuControls: string
+}>()
+
+const emit = defineEmits<{ toggleMenu: [] }>()
+
 const { locale, setLocale } = useI18n()
 
 // Two locales (ADR-0004), so the control toggles instead of opening a menu.
@@ -43,13 +69,34 @@ async function toggleLocale() {
 </script>
 
 <style scoped lang="scss">
+@use '~/assets/styles/tokens/breakpoints' as bp;
+
 .app-top-bar {
   display: flex;
   align-items: center;
   gap: var(--space-md);
-  padding: var(--space-md) var(--space-lg);
-  border-bottom: 1px solid var(--color-outline-variant);
-  background: var(--color-surface-lowest);
+  // Wide screens: the page content is centred in --container-max with --space-lg padding,
+  // so the bar's inner edges follow it. Below that width this is just --space-lg.
+  padding: var(--space-md)
+    max(var(--space-lg), calc((100% - var(--container-max)) / 2 + var(--space-lg)));
+  // Figma: stroke #c3c6d7 at 30%, fill #faf8ff at 90%, shadow 0 1px 2px black at 5%,
+  // background blur 12 (Figma's value is twice the CSS radius).
+  border-bottom: 1px solid color-mix(in srgb, var(--color-outline-variant) 30%, transparent);
+  background: color-mix(in srgb, var(--color-surface) 90%, transparent);
+  box-shadow: var(--shadow-chip);
+  backdrop-filter: blur(6px);
+  // backdrop-filter makes the bar a stacking context; lift it so the profile menu
+  // panel inside it still overlaps the page content below.
+  position: relative;
+  z-index: 10;
+
+  &__brand--full {
+    --app-brand-tile-size: 2.25rem;
+  }
+
+  &__brand--short {
+    --app-brand-tile-size: 1.75rem;
+  }
 
   &__search {
     position: relative;
@@ -73,7 +120,8 @@ async function toggleLocale() {
     padding: var(--space-sm) var(--space-md) var(--space-sm) var(--space-xl);
     border: 1px solid transparent;
     border-bottom-width: 2px;
-    border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+    // design.md: input fields use 4px.
+    border-radius: var(--radius-md);
     background: var(--color-surface-low);
     color: var(--color-on-surface);
     font-family: var(--font-ui);
@@ -112,6 +160,48 @@ async function toggleLocale() {
     align-items: center;
     gap: var(--space-md);
     margin-left: auto;
+  }
+
+  // After __icon-button, which the menu button also carries.
+  &__menu {
+    display: none;
+  }
+
+  // The logo root sets its own `display` in AppBrand; the extra class keeps these
+  // rules ahead of it whatever order the stylesheets load in.
+  & &__brand {
+    display: none;
+  }
+
+  // Tablet (Figma 303:239): menu button and full logo instead of search.
+  @media (max-width: bp.$tablet - 0.02px) {
+    &__menu,
+    & &__brand--full {
+      display: flex;
+    }
+
+    &__search {
+      display: none;
+    }
+  }
+
+  // Mobile (Figma 303:2): short logo, no menu button; the tab bar navigates.
+  @media (max-width: bp.$mobile - 0.02px) {
+    gap: var(--space-sm);
+    padding: var(--space-sm) var(--space-md);
+
+    &__menu,
+    & &__brand--full {
+      display: none;
+    }
+
+    & &__brand--short {
+      display: flex;
+    }
+
+    &__actions {
+      gap: var(--space-sm);
+    }
   }
 }
 </style>

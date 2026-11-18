@@ -28,8 +28,8 @@ defineProps<{ classes: TodayClass[] }>()
     width: var(--space-sm);
     height: var(--space-sm);
     border-radius: var(--radius-full);
-    // Follows the badge text colour, so the dot matches whichever variant is used.
-    background: currentColor;
+    // Brighter than the badge text, as in the mockup.
+    background: var(--color-warning);
   }
 
   &__list {
