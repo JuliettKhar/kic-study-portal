@@ -3,6 +3,10 @@
     "dashboard": "Dashboard",
     "classSchedule": "Class Schedule",
     "announcements": "Announcements",
-    "learningResources": "Learning Resources"
+    "learningResources": "Learning Resources",
+    "short": {
+      "dashboard": "Home",
+      "learningResources": "Learning"
+    }
   }
 }

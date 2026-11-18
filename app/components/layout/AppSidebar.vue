@@ -1,16 +1,6 @@
 <template>
   <div class="app-sidebar">
-    <!-- Also points at the dashboard: kept outside <nav>, and the nav item marks the page. -->
-    <NuxtLink to="/" class="app-sidebar__brand" aria-current-value="false">
-      <span class="app-sidebar__brand-tile">
-        <Icon name="lucide:graduation-cap" class="app-sidebar__brand-icon" aria-hidden="true" />
-      </span>
-
-      <span class="app-sidebar__brand-text">
-        <span class="app-sidebar__brand-title">{{ $t('common.brandTitle') }}</span>
-        <span class="app-sidebar__brand-subtitle">{{ $t('common.brandSubtitle') }}</span>
-      </span>
-    </NuxtLink>
+    <LayoutAppBrand class="app-sidebar__brand" />
 
     <nav :aria-label="$t('common.mainNavigation')">
       <ul class="app-sidebar__nav">
@@ -49,65 +39,11 @@ const route = useRoute()
   flex-direction: column;
   gap: var(--space-xl);
   padding: var(--space-lg) var(--space-md);
-  border-right: 1px solid var(--color-outline-variant);
+  border-right: 1px solid var(--color-outline-subtle);
   background: var(--color-surface-low);
 
   &__brand {
-    display: flex;
-    align-items: center;
-    gap: var(--space-sm);
     padding-inline: var(--space-sm);
-    border-radius: var(--radius-md);
-    text-decoration: none;
-
-    &:focus-visible {
-      outline: 2px solid var(--color-primary);
-      outline-offset: 2px;
-    }
-  }
-
-  // Same tile as the login screen, one step smaller.
-  &__brand-tile {
-    display: flex;
-    flex-shrink: 0;
-    justify-content: center;
-    align-items: center;
-    width: 2rem;
-    height: 2rem;
-    border-radius: var(--radius-md);
-    background: var(--color-primary);
-    color: var(--color-on-primary);
-
-    // The whole logo is one link.
-    .app-sidebar__brand:hover & {
-      background: color-mix(in srgb, var(--color-primary) 88%, var(--color-on-surface));
-    }
-  }
-
-  &__brand-icon {
-    font-size: 1rem;
-  }
-
-  &__brand-text {
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-    line-height: 1.3;
-  }
-
-  &__brand-title {
-    color: var(--color-on-surface-strong);
-    font-family: var(--font-ui);
-    // One step down from the mockup: the icon tile takes width the design did not budget for.
-    font-size: var(--font-size-body-md);
-    font-weight: 700;
-    white-space: nowrap;
-  }
-
-  &__brand-subtitle {
-    color: var(--color-on-surface-muted);
-    font-family: var(--font-ui);
-    font-size: var(--font-size-body-xs);
   }
 
   &__nav {

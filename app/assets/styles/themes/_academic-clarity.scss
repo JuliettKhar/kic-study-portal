@@ -26,6 +26,7 @@
   // Brand
   --color-primary: #{tokens.$primary};
   --color-on-primary: #{tokens.$on-primary};
+  --color-primary-container: #{tokens.$primary-container};
 
   --color-secondary: #{tokens.$secondary};
   --color-on-secondary: #{tokens.$on-secondary};
@@ -33,6 +34,9 @@
   // Semantic
   --color-success: #{tokens.$success};
   --color-warning: #{tokens.$warning};
+  --color-warning-container: #{tokens.$warning-container};
+  --color-warning-outline: #{tokens.$warning-outline};
+  --color-on-warning-container: #{tokens.$on-warning-container};
   --color-error: #{tokens.$error};
   --color-info: #{tokens.$info};
 
@@ -61,6 +65,7 @@
 
   // Shadows
   --shadow-card: #{tokens.$shadow-card};
+  --shadow-surface: #{tokens.$shadow-surface};
   --shadow-chip: #{tokens.$shadow-chip};
 
   // Radius

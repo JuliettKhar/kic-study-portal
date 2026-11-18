@@ -141,7 +141,7 @@ The style is a hybrid of **Minimalism** and **Glassmorphism**. It utilizes heavy
 
 The palette is anchored by the #2563eb Blue accent, representing academic authority. V2 introduces a semantic status layer to handle the urgency of academic deadlines and attendance.
 
-- **Primary:** #2563eb is used for primary actions, active navigation states, and key focus indicators.
+- **Primary:** #004ac6 (`primary`) is used for primary actions, active navigation states, and key focus indicators. The lighter #2563eb (`primary-container`) is used for the Online badge.
 - **Surface:** The background uses a soft #f8fafc to reduce eye strain.
 - **Semantic Palette:**
   - **Success (#10b981):** Attendance "Present", Classroom "Open", Task "Completed".
@@ -166,6 +166,7 @@ For V2's "Course Details" and "Resources" pages:
 The layout follows a 12-column **fixed grid** for desktop, centering at 1280px. For data-dense views like "Course Resources," the system uses a sidebar-content split (4 columns for navigation/meta, 8 columns for primary content).
 
 - **Vertical Rhythm:** Built on a 4px baseline. Components should use `md` (16px) or `lg` (24px) for internal padding to maintain the "airy" academic feel.
+- **Breakpoints:** mobile < 768px, tablet 768–1023px, desktop ≥ 1024px (`tokens/_breakpoints.scss`). Below 1024px the sidebar is replaced by a drawer opened from the top bar (tablet) or by a bottom tab bar (mobile).
 - **Mobile Adaptations:** At the 768px breakpoint, the layout transitions to a 1-column fluid stack with 16px side margins. Badges and tags should wrap horizontally rather than shrink.
 
 ## Elevation & Depth
@@ -173,7 +174,7 @@ The layout follows a 12-column **fixed grid** for desktop, centering at 1280px. 
 Elevation is communicated through **Tonal Layers** and **Glassmorphism** rather than traditional shadows.
 
 - **Level 0 (Background):** #f8fafc.
-- **Level 1 (Cards/Content):** Pure white (#ffffff) with a 1px border (#e2e8f0).
+- **Level 1 (Cards/Content, `--shadow-surface`):** Pure white (#ffffff) with a 1px border (#e2e8f0) and a soft two-layer shadow: `0 4px 6px -1px` black at 5% + `0 2px 4px -1px` black at 3%.
 - **Raised card (`--shadow-card`):** Pure white, no border, two-layer shadow in #e2e8f0 at 60%: `0 20px 25px -5px` + `0 8px 10px -6px`. Used for the login card.
 - **Chip (`--shadow-chip`):** 1px #e2e8f0 border, `0 1px 2px` black at 5% shadow.
 - **Level 2 (Modals/Overlays):** White with 90% opacity, a 16px backdrop-blur, and a soft 10% opacity primary color tint in the shadow.
@@ -184,22 +185,22 @@ Elevation is communicated through **Tonal Layers** and **Glassmorphism** rather 
 The shape language is "Soft" (0.25rem base), providing a professional yet modern appearance.
 
 - **Components:** Standard buttons and input fields use 4px (0.25rem).
-- **Cards & Containers:** Large containers use `rounded-lg` (8px / 0.5rem) to define distinct content areas.
-- **Badges:** Use a specialized `rounded-full` (pill shape) to differentiate meta-information from interactive buttons.
+- **Cards & Containers:** Large containers use `rounded-lg` (8px / 0.5rem) to define distinct content areas. A card title row has a 1px divider (`outline-variant` at 30%) with 8px below the title.
+- **Badges:** Status badges (e.g. Today) use `rounded-full` (pill shape). Tag badges for class time and delivery (Online / Classroom) use 4px (`rounded-md`).
 
 ## Components
 
 V2 focuses on refined data display and status tracking.
 
 - **Refined Badges:**
-  - **Online:** Info blue background (10% opacity), Info blue text.
-  - **Classroom:** Neutral slate background (10%), slate text.
-  - **Today:** Warning amber background (10%), amber text.
+  - **Online:** #2563eb (`primary-container`) at 10% background with a 20% border, #2563eb text.
+  - **Classroom:** Slate #64748b at 10% background with a 20% border, `on-surface-variant` text.
+  - **Today:** Amber-50 background (#fffbeb), 1px amber-200 border (#fde68a), amber-700 text (#b45309), amber (#f59e0b) status dot.
   - **Cancelled/Deadline:** Error red background (10%), red text.
-  - _Styling:_ All badges use `badge-label` typography, 4px horizontal padding, and 2px vertical padding.
+  - _Styling:_ All badges use `badge-label` typography (11px, line-height 1.6). Padding: 4px × 8px on desktop, 2px × 8px on tablet, 2px × 6px on mobile (10/15 type).
 - **Glass Cards:** Used for "Resource" tiles. Background is `rgba(255, 255, 255, 0.7)` with `backdrop-filter: blur(10px)`.
 - **Buttons:**
-  - _Primary:_ Solid #2563eb with white text.
+  - _Primary:_ Solid #004ac6 (`primary`) with white text.
   - _Secondary:_ Transparent with 1px #cbd5e1 border.
 - **Input Fields:** Use #f1f5f9 background with a bottom-only 2px border that animates to #2563eb on focus.
 - **Lists:** Resource lists should use 16px padding between items with a `1px solid #f1f5f9` separator.
