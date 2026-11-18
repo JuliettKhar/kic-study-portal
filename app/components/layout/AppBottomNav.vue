@@ -2,7 +2,6 @@
   <nav class="app-bottom-nav" :aria-label="$t('common.tabNavigation')">
     <ul class="app-bottom-nav__list">
       <li v-for="item in NAV_ITEMS" :key="item.to" class="app-bottom-nav__cell">
-        <!-- Pages that do not exist yet are not links, same as the sidebar. -->
         <component
           :is="item.disabled ? 'span' : NuxtLink"
           :to="item.disabled ? undefined : item.to"
@@ -33,7 +32,6 @@ const route = useRoute()
 .app-bottom-nav {
   border-top: 1px solid var(--color-outline-subtle);
   background: var(--color-surface-lowest);
-  // Keeps the tabs above the home indicator on notched phones.
   padding-bottom: env(safe-area-inset-bottom);
 
   &__list {

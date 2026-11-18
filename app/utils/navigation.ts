@@ -1,7 +1,7 @@
 export interface NavItem {
   /** Message key under `nav.*`, translated where the item is rendered. */
   labelKey: string
-  /** Shorter label for the mobile tab bar, also under `nav.*`; falls back to `labelKey`. */
+  /** Tab bar label; falls back to `labelKey`. */
   shortLabelKey?: string
   /** Lucide icon name. */
   icon: string
@@ -10,7 +10,7 @@ export interface NavItem {
   disabled?: boolean
 }
 
-/** Sidebar, drawer and mobile tab bar navigation from the dashboard mockups. */
+/** Sidebar navigation from the dashboard mockup. */
 export const NAV_ITEMS: NavItem[] = [
   {
     labelKey: 'nav.dashboard',

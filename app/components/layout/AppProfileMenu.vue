@@ -6,7 +6,7 @@
     @focusout="onFocusOut"
   >
     <!-- SSR already resolves the session, so this only shows if it is missing. -->
-    <UiSkeleton v-if="!user" width="2.25rem" circle />
+    <UiSkeleton v-if="!user" width="var(--ui-avatar-size, 2.25rem)" circle />
 
     <template v-else>
       <button
@@ -19,7 +19,7 @@
         @click="isOpen = !isOpen"
       >
         <UiAvatar :src="user.picture" />
-        <!-- Tablet only (Figma 303:239). Already part of the button's aria-label. -->
+        <!-- Already in the button's aria-label. -->
         <span class="app-profile-menu__trigger-name" aria-hidden="true">{{ user.name }}</span>
       </button>
 
@@ -131,7 +131,6 @@ async function signOut() {
 
   &__panel {
     position: absolute;
-    // Grows from the trigger corner.
     transform-origin: top right;
     top: calc(100% + var(--space-sm));
     right: 0;
@@ -225,7 +224,6 @@ async function signOut() {
     border-top: 1px solid var(--color-outline-subtle);
   }
 
-  // Tablet (Figma 303:239): divider, smaller avatar and the name beside it.
   @media (max-width: bp.$tablet - 0.02px) {
     --ui-avatar-size: 2rem;
     padding-left: var(--space-sm);
@@ -240,7 +238,6 @@ async function signOut() {
     }
   }
 
-  // Mobile (Figma 303:2): avatar only.
   @media (max-width: bp.$mobile - 0.02px) {
     --ui-avatar-size: 1.75rem;
     padding-left: 0;
@@ -256,7 +253,6 @@ async function signOut() {
   }
 }
 
-// Fades in with a short drop from the trigger, and back out on close.
 .app-profile-menu-panel-enter-active,
 .app-profile-menu-panel-leave-active {
   transition:

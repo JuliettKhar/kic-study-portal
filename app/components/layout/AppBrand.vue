@@ -35,7 +35,7 @@ withDefaults(defineProps<{ variant?: 'full' | 'short' }>(), {
   }
 
   // Same tile as the login screen.
-  // The tile size differs per placement, so the parent can set --app-brand-tile-size.
+  // Parents set --app-brand-tile-size per placement.
   &__tile {
     display: flex;
     flex-shrink: 0;

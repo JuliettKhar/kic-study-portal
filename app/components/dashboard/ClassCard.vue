@@ -2,10 +2,10 @@
   <article class="class-card">
     <div class="class-card__body">
       <div class="class-card__badges">
-        <UiBadge variant="neutral" class="class-card__time">
+        <UiBadge variant="neutral" shape="tag" class="class-card__time">
           {{ item.period }} {{ item.time }}
         </UiBadge>
-        <UiBadge :variant="delivery.variant">{{ $t(delivery.labelKey) }}</UiBadge>
+        <UiBadge :variant="delivery.variant" shape="tag">{{ $t(delivery.labelKey) }}</UiBadge>
       </div>
 
       <h3 class="class-card__title">{{ item.title }}</h3>
@@ -128,20 +128,12 @@ const delivery = computed(() => DELIVERY[props.item.delivery])
     gap: var(--space-sm);
   }
 
-  // The time badge is a tag, like the delivery badge. The extra class keeps these
-  // rules ahead of UiBadge's own radius and font-weight.
-  & &__time {
-    border-radius: var(--radius-md);
-  }
-
-  // Mobile (Figma 303:2): the time badge is Inter Medium, lighter than other badges.
-  // The actions drop below the info, behind a divider, and share the row equally.
+  // `& &__x` outranks the child component's own rules regardless of stylesheet order.
   @media (max-width: bp.$mobile - 0.02px) {
     flex-direction: column;
     align-items: stretch;
     gap: var(--space-sm);
 
-    // Delivery badge on the right.
     &__badges {
       justify-content: space-between;
     }
@@ -156,8 +148,6 @@ const delivery = computed(() => DELIVERY[props.item.delivery])
       }
     }
 
-    // Figma: 6px top and bottom, Inter Semi Bold 12/16. The extra class keeps this
-    // ahead of UiButton's own padding and font size.
     & &__actions > * {
       padding-block: 6px;
       font-size: var(--font-size-body-xs);
@@ -168,14 +158,12 @@ const delivery = computed(() => DELIVERY[props.item.delivery])
       font-weight: 500;
     }
 
-    // Figma: Noto Sans JP Bold 14/20.
     &__title {
       font-size: var(--font-size-body-sm);
       font-weight: 700;
       line-height: 1.25rem;
     }
 
-    // Figma: teacher and room in Noto Sans JP Regular 11/16.5.
     &__meta {
       font-size: 0.6875rem;
       line-height: 1.5;

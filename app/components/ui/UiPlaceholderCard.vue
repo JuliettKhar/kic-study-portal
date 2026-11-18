@@ -41,7 +41,7 @@ const lineWidth = (line: number) => `${[100, 82, 64, 90, 72][(line - 1) % 5]}%`
   flex-direction: column;
   gap: var(--space-md);
   padding: var(--space-lg);
-  // Same surface as UiCard's outlined variant, which it stands in for.
+  // Matches UiCard's outlined surface.
   border: 1px solid var(--color-outline-subtle);
   border-radius: var(--radius-xl);
   background: var(--color-surface-lowest);

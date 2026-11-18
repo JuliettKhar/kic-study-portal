@@ -14,10 +14,8 @@
       </main>
     </div>
 
-    <!-- Tablet: the sidebar navigation, opened from the top bar menu button. -->
     <LayoutAppNavDrawer :id="drawerId" v-model:open="isDrawerOpen" />
 
-    <!-- Mobile: the same destinations as the sidebar. -->
     <LayoutAppBottomNav class="app-layout__bottom-nav" />
   </div>
 </template>
@@ -58,11 +56,10 @@ const isDrawerOpen = ref(false)
     display: none;
   }
 
-  // Tablet and mobile: no sidebar column (Figma 303:239, 303:2).
   @media (max-width: bp.$tablet - 0.02px) {
     grid-template-columns: minmax(0, 1fr);
 
-    // The sidebar root sets its own `display`; the child combinator keeps this ahead of it.
+    // `>` outranks AppSidebar's own `display`.
     > .app-layout__sidebar {
       display: none;
     }
@@ -70,7 +67,6 @@ const isDrawerOpen = ref(false)
 
   @media (max-width: bp.$mobile - 0.02px) {
     &__content {
-      // design.md: 16px side margins; the bottom padding keeps content clear of the tab bar.
       padding: var(--space-md) var(--space-md)
         calc(var(--app-bottom-nav-height) + env(safe-area-inset-bottom) + var(--space-lg));
     }
@@ -81,9 +77,22 @@ const isDrawerOpen = ref(false)
       right: 0;
       bottom: 0;
       left: 0;
-      // Under the profile menu panel (z-index 10), above the page content.
+      // Below the top bar (z-index 10).
       z-index: 5;
     }
+  }
+}
+
+// Keeps focus and anchors clear of the sticky top bar and the tab bar.
+:global(html:has(.app-layout)) {
+  scroll-padding-top: 5rem;
+}
+
+@media (max-width: bp.$mobile - 0.02px) {
+  :global(html:has(.app-layout)) {
+    scroll-padding-top: 4rem;
+    // 3rem = --app-bottom-nav-height (not visible on html).
+    scroll-padding-bottom: calc(3rem + env(safe-area-inset-bottom));
   }
 }
 </style>
