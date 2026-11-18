@@ -1,6 +1,4 @@
-// Lower bounds of each range (docs/design/design.md):
-// mobile < $mobile, tablet $mobile – ($tablet - 1), desktop ≥ $tablet.
-// New narrower-than queries use `max-width: $x - 0.02px`, so the bound itself
-// belongs to the wider range. The auth screens still use `max-width: $mobile`.
+// Range lower bounds. Use `max-width: $x - 0.02px` so the bound belongs to the wider range.
+// The auth screens still use `max-width: $mobile` (768px counts as mobile there).
 $mobile: 768px;
 $tablet: 1024px;

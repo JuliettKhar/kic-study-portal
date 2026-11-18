@@ -11,8 +11,7 @@
 </template>
 
 <script setup lang="ts">
-// A modal <dialog> gives Esc, an inert page behind it and focus moving in on open
-// and back to the opener on close, without custom focus management.
+// Native modal <dialog>: Esc, inert page and focus return come for free.
 const open = defineModel<boolean>('open', { required: true })
 
 const dialog = useTemplateRef('dialog')
@@ -25,8 +24,7 @@ watch(open, (isOpen) => {
   if (!isOpen && dialog.value.open) dialog.value.close()
 })
 
-// The sidebar fills the dialog box, so a click that lands on the dialog itself
-// came from the ::backdrop. A link closes it too, including one to the current page.
+// A click on the dialog itself is the backdrop (the sidebar fills the box); links close it too.
 function onClick(event: MouseEvent) {
   const target = event.target
   if (target === dialog.value || (target instanceof Element && target.closest('a'))) {
@@ -34,7 +32,23 @@ function onClick(event: MouseEvent) {
   }
 }
 
-// Following a link inside the drawer closes it.
+// Outside the tablet range the menu button is hidden, so close the modal there.
+// Keep in sync with $mobile / $tablet in tokens/_breakpoints.scss.
+const OUTSIDE_TABLET = '(max-width: 767.98px), (min-width: 1024px)'
+
+function onRangeChange(event: MediaQueryListEvent) {
+  if (event.matches) open.value = false
+}
+
+let outsideTablet: MediaQueryList | undefined
+
+onMounted(() => {
+  outsideTablet = window.matchMedia(OUTSIDE_TABLET)
+  outsideTablet.addEventListener('change', onRangeChange)
+})
+
+onBeforeUnmount(() => outsideTablet?.removeEventListener('change', onRangeChange))
+
 watch(
   () => route.fullPath,
   () => {
@@ -45,8 +59,7 @@ watch(
 
 <style scoped lang="scss">
 .app-nav-drawer {
-  // Slides in from the left. `display` and `overlay` switch at the end of the
-  // close transition (allow-discrete), so the dialog stays visible while it leaves.
+  // allow-discrete keeps the dialog visible until the close transition ends.
   --app-nav-drawer-duration: 0.25s;
   width: 16rem;
   max-width: calc(100vw - var(--space-xl));
@@ -90,7 +103,6 @@ watch(
   }
 }
 
-// Where the open transition starts from: the dialog has no previous style when it opens.
 @starting-style {
   .app-nav-drawer[open] {
     transform: translateX(-100%);
@@ -101,7 +113,6 @@ watch(
   }
 }
 
-// A modal dialog does not stop the page behind it from scrolling.
 :global(html:has(.app-nav-drawer[open])) {
   overflow: hidden;
 }

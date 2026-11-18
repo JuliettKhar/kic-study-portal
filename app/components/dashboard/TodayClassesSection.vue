@@ -1,8 +1,7 @@
 <template>
   <UiCard :title="$t('dashboard.todayClasses.title')" icon="lucide:clock">
     <template #actions>
-      <UiBadge variant="warning">
-        <span class="today-classes__dot" aria-hidden="true" />
+      <UiBadge variant="warning" dot>
         {{ $t('dashboard.todayClasses.todayBadge') }}
       </UiBadge>
     </template>
@@ -24,14 +23,6 @@ defineProps<{ classes: TodayClass[] }>()
 
 <style scoped lang="scss">
 .today-classes {
-  &__dot {
-    width: var(--space-sm);
-    height: var(--space-sm);
-    border-radius: var(--radius-full);
-    // Brighter than the badge text, as in the mockup.
-    background: var(--color-warning);
-  }
-
   &__list {
     display: flex;
     flex-direction: column;

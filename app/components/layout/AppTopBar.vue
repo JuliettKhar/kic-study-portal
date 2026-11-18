@@ -1,6 +1,5 @@
 <template>
   <header class="app-top-bar">
-    <!-- Tablet only: opens the sidebar navigation as a drawer. -->
     <button
       type="button"
       class="app-top-bar__icon-button app-top-bar__menu"
@@ -13,7 +12,6 @@
       <Icon name="lucide:menu" aria-hidden="true" />
     </button>
 
-    <!-- The sidebar logo is hidden below desktop, so the top bar carries it. -->
     <LayoutAppBrand class="app-top-bar__brand app-top-bar__brand--full" />
     <LayoutAppBrand variant="short" class="app-top-bar__brand app-top-bar__brand--short" />
 
@@ -52,9 +50,7 @@
 
 <script setup lang="ts">
 defineProps<{
-  /** Whether the navigation drawer is open, for the menu button state. */
   menuOpen: boolean
-  /** Id of the drawer the menu button controls. */
   menuControls: string
 }>()
 
@@ -75,19 +71,15 @@ async function toggleLocale() {
   display: flex;
   align-items: center;
   gap: var(--space-md);
-  // Wide screens: the page content is centred in --container-max with --space-lg padding,
-  // so the bar's inner edges follow it. Below that width this is just --space-lg.
+  // Lines up with the centred page content on wide screens.
   padding: var(--space-md)
     max(var(--space-lg), calc((100% - var(--container-max)) / 2 + var(--space-lg)));
-  // Figma: stroke #c3c6d7 at 30%, fill #faf8ff at 90%, shadow 0 1px 2px black at 5%,
-  // background blur 12 (Figma's value is twice the CSS radius).
   border-bottom: 1px solid color-mix(in srgb, var(--color-outline-variant) 30%, transparent);
   background: color-mix(in srgb, var(--color-surface) 90%, transparent);
   box-shadow: var(--shadow-chip);
   backdrop-filter: blur(6px);
-  // backdrop-filter makes the bar a stacking context; lift it so the profile menu
-  // panel inside it still overlaps the page content below.
-  position: relative;
+  position: sticky;
+  top: 0;
   z-index: 10;
 
   &__brand--full {
@@ -120,7 +112,6 @@ async function toggleLocale() {
     padding: var(--space-sm) var(--space-md) var(--space-sm) var(--space-xl);
     border: 1px solid transparent;
     border-bottom-width: 2px;
-    // design.md: input fields use 4px.
     border-radius: var(--radius-md);
     background: var(--color-surface-low);
     color: var(--color-on-surface);
@@ -167,13 +158,11 @@ async function toggleLocale() {
     display: none;
   }
 
-  // The logo root sets its own `display` in AppBrand; the extra class keeps these
-  // rules ahead of it whatever order the stylesheets load in.
+  // `& &__brand` outranks AppBrand's own `display` regardless of stylesheet order.
   & &__brand {
     display: none;
   }
 
-  // Tablet (Figma 303:239): menu button and full logo instead of search.
   @media (max-width: bp.$tablet - 0.02px) {
     &__menu,
     & &__brand--full {
@@ -185,7 +174,6 @@ async function toggleLocale() {
     }
   }
 
-  // Mobile (Figma 303:2): short logo, no menu button; the tab bar navigates.
   @media (max-width: bp.$mobile - 0.02px) {
     gap: var(--space-sm);
     padding: var(--space-sm) var(--space-md);

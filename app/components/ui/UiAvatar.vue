@@ -9,7 +9,7 @@
 const props = withDefaults(
   defineProps<{
     src?: string
-    /** Fixed size. Without it the avatar follows `--ui-avatar-size`, so a parent can resize it per breakpoint. */
+    /** Without it the avatar follows `--ui-avatar-size`. */
     size?: string
   }>(),
   {

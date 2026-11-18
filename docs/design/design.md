@@ -139,7 +139,7 @@ The style is a hybrid of **Minimalism** and **Glassmorphism**. It utilizes heavy
 
 ## Colors
 
-The palette is anchored by the #2563eb Blue accent, representing academic authority. V2 introduces a semantic status layer to handle the urgency of academic deadlines and attendance.
+The palette is anchored by the #004ac6 Blue (`primary`), representing academic authority. V2 introduces a semantic status layer to handle the urgency of academic deadlines and attendance.
 
 - **Primary:** #004ac6 (`primary`) is used for primary actions, active navigation states, and key focus indicators. The lighter #2563eb (`primary-container`) is used for the Online badge.
 - **Surface:** The background uses a soft #f8fafc to reduce eye strain.
@@ -202,5 +202,5 @@ V2 focuses on refined data display and status tracking.
 - **Buttons:**
   - _Primary:_ Solid #004ac6 (`primary`) with white text.
   - _Secondary:_ Transparent with 1px #cbd5e1 border.
-- **Input Fields:** Use #f1f5f9 background with a bottom-only 2px border that animates to #2563eb on focus.
+- **Input Fields:** Use #f1f5f9 background with a bottom-only 2px border that animates to #004ac6 (`primary`) on focus.
 - **Lists:** Resource lists should use 16px padding between items with a `1px solid #f1f5f9` separator.

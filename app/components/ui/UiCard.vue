@@ -63,7 +63,6 @@ const titleId = useId()
     justify-content: flex-end;
     gap: var(--space-md);
     margin-bottom: var(--space-md);
-    // Figma 90:45: thin divider under the title row.
     padding-bottom: var(--space-sm);
     border-bottom: 1px solid color-mix(in srgb, var(--color-outline-variant) 30%, transparent);
   }
@@ -84,7 +83,6 @@ const titleId = useId()
     color: var(--color-primary);
   }
 
-  // Mobile (Figma 303:2): section titles are Noto Sans JP Bold 14/20.
   @media (max-width: bp.$mobile - 0.02px) {
     &__title {
       font-family: var(--font-content);
