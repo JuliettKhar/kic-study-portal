@@ -317,7 +317,7 @@ const CAPABILITIES = [
 
   // Spacing and type from the Figma mobile frame (303:2446). The card heading keeps its size.
   // Strictly below 768px: the 768px Figma frame is the tablet layout.
-  @media (max-width: #{bp.$mobile - 0.02px}) {
+  @media (width < bp.$mobile) {
     gap: var(--space-md);
 
     &__brand-title {

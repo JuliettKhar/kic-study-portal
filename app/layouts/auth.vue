@@ -34,7 +34,7 @@ const currentYear = useState('auth-footer-year', () => new Date().getFullYear())
   padding: var(--space-xl) var(--space-md);
   gap: var(--space-lg-plus);
 
-  @media (max-width: #{bp.$mobile - 0.02px}) {
+  @media (width < bp.$mobile) {
     gap: var(--space-md);
   }
 
@@ -63,7 +63,7 @@ const currentYear = useState('auth-footer-year', () => new Date().getFullYear())
     line-height: 1.25rem;
     text-align: center;
 
-    @media (max-width: #{bp.$mobile - 0.02px}) {
+    @media (width < bp.$mobile) {
       font-size: var(--font-size-body-xs);
       line-height: 1.125rem;
     }
