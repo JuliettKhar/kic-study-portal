@@ -200,8 +200,8 @@ const FLOATING_ITEMS: FloatingItem[] = [
     }
   }
 
-  // No room beside a full-width card on mobile.
-  @media (max-width: bp.$mobile) {
+  // No room beside a full-width card on phones. A 768px tablet still has a 160px gutter.
+  @media (width < bp.$mobile) {
     &__item {
       display: none;
     }

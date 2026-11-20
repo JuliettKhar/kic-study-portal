@@ -30,8 +30,10 @@ const CAPABILITIES = [
     <!-- The heading is styled for this page, so it stays in the slot and names the card by id
          rather than going through UiCard's `title` prop. -->
     <UiCard variant="raised" class="login__card" aria-labelledby="login-heading">
-      <h2 id="login-heading" class="login__heading">{{ $t('auth.welcomeHeading') }}</h2>
-      <p class="login__lead">{{ $t('auth.lead') }}</p>
+      <div class="login__intro">
+        <h2 id="login-heading" class="login__heading">{{ $t('auth.welcomeHeading') }}</h2>
+        <p class="login__lead">{{ $t('auth.lead') }}</p>
+      </div>
 
       <!-- A full page load, not a router navigation: OAuth is a chain of cross-origin redirects. -->
       <UiButton size="lg" block href="/auth/google" class="login__button">
@@ -125,6 +127,12 @@ const CAPABILITIES = [
     padding: var(--space-xl) var(--space-lg);
   }
 
+  &__intro {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+  }
+
   &__heading {
     margin: 0;
     font-family: var(--font-ui);
@@ -138,6 +146,10 @@ const CAPABILITIES = [
     color: var(--color-on-surface-muted);
     font-size: var(--font-size-body-sm-plus);
     line-height: 1.6;
+    // Keeps full-width lines but avoids a lone 「す。」 on the last one; Japanese breaks
+    // between phrases rather than inside words where supported (needs `lang="ja"`).
+    text-wrap: pretty;
+    word-break: auto-phrase;
   }
 
   // Sizing, colour and focus come from UiButton; only the sheen is specific to this screen.
@@ -262,20 +274,76 @@ const CAPABILITIES = [
     font-size: 1.25rem;
   }
 
-  // One step down the type scale on phones.
-  @media (max-width: bp.$mobile) {
+  // Spacing and type from the Figma tablet frame (303:2355).
+  @media (max-width: bp.$tablet) {
+    gap: var(--space-lg);
+
+    &__button {
+      font-size: var(--font-size-body-sm-plus);
+    }
+
+    // label-caps from docs/design/design.md.
+    &__capabilities-title {
+      font-family: var(--font-ui);
+      font-size: var(--font-size-label-caps);
+      font-weight: 700;
+      line-height: 1rem;
+      letter-spacing: 0.05em;
+    }
+
+    &__card {
+      padding: var(--space-lg-plus);
+    }
+
+    &__intro {
+      gap: var(--space-sm);
+    }
+
+    &__capabilities {
+      margin-top: var(--space-sm);
+      gap: calc(var(--space-sm) + var(--space-xs));
+    }
+
+    &__chips {
+      gap: var(--space-sm);
+    }
+
+    // 34px-tall pill: the 1px border sits outside this padding.
+    &__chip {
+      padding: calc(var(--space-sm) - 2px) calc(var(--space-md) - 2px);
+      line-height: 1.25rem;
+    }
+  }
+
+  // Spacing and type from the Figma mobile frame (303:2446). The card heading keeps its size.
+  // Strictly below 768px: the 768px Figma frame is the tablet layout.
+  @media (width < bp.$mobile) {
+    gap: var(--space-md);
+
     &__brand-title {
       font-size: var(--font-size-headline-sm);
     }
 
-    &__heading {
-      font-size: var(--font-size-body-lg);
+    &__lead,
+    &__button {
+      font-size: var(--font-size-body-sm);
     }
 
-    &__lead,
-    &__button,
-    &__capabilities-title {
-      font-size: var(--font-size-body-sm);
+    &__card {
+      gap: var(--space-sm);
+      padding: var(--space-md);
+    }
+
+    &__button {
+      margin-top: var(--space-sm);
+    }
+
+    &__notice {
+      padding: var(--space-sm);
+    }
+
+    &__capabilities {
+      margin-top: 0;
     }
   }
 }
